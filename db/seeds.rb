@@ -7,6 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Admin.create!(
-  email: "aaabbb@mail.com", ## 任意のメールアドレス,
+  email: "admin@mail.com", ## 任意のメールアドレス,
   password: "aaabbb" ## 任意のパスワード
 )
