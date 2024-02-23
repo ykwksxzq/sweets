@@ -13,6 +13,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+#ゲストログイン用
+
+get "users" => redirect("/users/sign_up")
+
+devise_scope :user do
+  post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+end
+
+
+
 scope module: :public do
   root to: "homes#top"
 end
