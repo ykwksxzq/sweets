@@ -1,0 +1,13 @@
+<%= form_with model: hoge, url:custom_url, method: :patch do |f| %>
+
+    <div class="form-group row">
+     <div class="field">
+      <h6 class="text-dark p-2 mb-0">登録名</h6>
+       <%= f.text_field :name, class: 'form-control'%>
+     </div>
+    </div>
+   <div class="actions m-3">
+    <%= f.submit '保存', class: "btn btn-success" %>
+   </div>
+
+   <% end %>

@@ -1,0 +1,27 @@
+<div class="container">
+ <div class="row justify-content-center">
+  <h2 class="title mb-2 m-3">ジャンル管理</h2>
+  </div>
+
+  <%= render 'layouts/error_messages', model: @genre %>
+
+  <div class="row justify-content-center">
+    <%= render partial: 'admin/example_partial', locals: { hoge: @genre, custom_url:admin_genres_path } %>
+
+    <div class="col-md-8">
+     <h5 class="title m-2 p-2 mb-0">ジャンル一覧</h5>
+      <% @genres.each do |genre| %>
+
+      <table class="table hover table-inverse" style="table-layout: auto;">
+       <tbody>
+        <tr>
+         <th scope="col"><%= genre.name %></th>
+         <th scope="col"><%= link_to "編集", edit_admin_genre_path(genre.id), class: "btn btn-success" %></th>
+         <th scope="col"><%= link_to "削除", admin_genre_path(genre.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
+        </tr>
+       </tbody>
+      </table>
+      <% end %>
+     </div>
+   </div>
+</div>

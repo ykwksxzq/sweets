@@ -2,19 +2,19 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Navbar</a>
 
-     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-     </button>
 
-
-         <div class="col-md-2 align-self-center">
+         <div class="col-md-4 align-self-center">
           <% if user_signed_in? %>
            <p class="text-primary">ようこそ、<%= current_user.name %>さん！</p>
           <% end %>
          </div>
 
 
+
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+     </button>
      <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
@@ -38,6 +38,9 @@
          会員一覧
          投稿一覧
          レビュー一覧
+         <li class="nav-item">
+           <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link' %>
+         </li>
          <li class="nav-item">
          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
          </li>

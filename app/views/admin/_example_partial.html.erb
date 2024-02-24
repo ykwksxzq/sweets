@@ -1,0 +1,15 @@
+<div class="col-md-3 m-3 p-3">
+    <h5 class="title mb-2">新規登録</h5>
+    <%= form_with model: hoge, url:custom_url, method: :post do |f| %>
+
+    <div class="form-group row">
+     <div class="field">
+      <h6 class="text-dark p-2">登録名</h6>
+     　<%= f.text_field :name, class: 'form-control'%>
+     </div>
+    </div>
+    <div class="actions m-3">
+     <%= f.submit '投稿',class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>

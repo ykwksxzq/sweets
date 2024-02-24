@@ -1,0 +1,11 @@
+<div class="container">
+ <div class="row justify-content-center">
+  <div class="col-md-5 col-sm-10">
+   <h5 class="text-dark p-4 mb-0">編集画面</h5>
+
+   <%= render partial: 'admin/edit', locals: { hoge: @genre, custom_url:admin_genre_path(@genre.id) } %>
+
+  <p><%= link_to "ジャンル一覧に戻る", admin_genres_path, class: "underline" %></p>
+  </div>
+ </div>
+</div>
