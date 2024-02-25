@@ -31,6 +31,7 @@ end
 
 scope module: :public do
   root to: "homes#top"
+   resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy]
 end
 
 end

@@ -1,0 +1,21 @@
+<h5>投稿画像</h5>
+<%= f.file_field :image, accept: "image/*" %>
+
+<h5>タイトル</h5>
+<%= f.text_field :title %>
+
+<h5>コメント</h5>
+<%= f.text_field :content %>
+
+<%= f.label :genre_id, "ジャンル" %>
+<div class="select_field"><%= f.collection_select :genre_id, Genre.all, :id, :name %>
+
+  <div class="field">
+    <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+    <%= f.text_field :name,value: @tag_list %>
+  </div>
+
+  <div class="field">
+  <%= f.label :status, "投稿状況" %>
+  <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+  </div>

@@ -28,7 +28,9 @@
         <li class="nav-item">
           マイページ
         </li>
-        投稿一覧
+        <li class="nav-item">
+            <%= link_to "投稿一覧", posts_path, class: 'nav-link' %>
+        </li>
         レビュー一覧
          <li class="nav-item">
          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link' %>
