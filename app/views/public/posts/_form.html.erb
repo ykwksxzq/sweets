@@ -1,21 +1,44 @@
-<h5>投稿画像</h5>
-<%= f.file_field :image, accept: "image/*" %>
 
-<h5>タイトル</h5>
-<%= f.text_field :title %>
-
-<h5>コメント</h5>
-<%= f.text_field :content %>
-
-<%= f.label :genre_id, "ジャンル" %>
-<div class="select_field"><%= f.collection_select :genre_id, Genre.all, :id, :name %>
-
+ <div class="form-group row">
   <div class="field">
-    <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
-    <%= f.text_field :name,value: @tag_list %>
+   <h5 class="text-dark p-3 mb-0">投稿画像</h5>
+     <%= f.file_field :image, accept: "image/*" %>
+  </div>
   </div>
 
-  <div class="field">
-  <%= f.label :status, "投稿状況" %>
-  <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+ <div class="form-group row">
+   <div class="field">
+    <h5 class="text-dark p-2 mb-0">タイトル(30文字以内）</h5>
+    <%= f.text_field :title, class: 'form-control', placeholder:"30文字以内で入力"  %>
+   </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="field">
+     <h6 class="text-dark p-2 mb-0">紹介文(200文字以内)</h6>
+      <%= f.text_area :content, class: 'form-control', placeholder:"200文字以内で入力" %>
+    </div>
+   </div>
+
+  <div class="form-group row">
+    <div class="field">
+     <h6 class="text-dark p-2 mb-0">ジャンル</h6>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, class: "custom-select w-100" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="field">
+     <h6 class="text-dark p-2 mb-0">タグ (,で区切ると複数タグ登録できます)</h6>
+    <%= f.text_field :name, value: @tag_list, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="field">
+     <h6 class="text-dark p-2 mb-0">投稿ステータス</h6>
+      <%= f.select :status, options_for_select([["公開", "published"], ["下書き", "draft"]], "published"), {}, { class: "custom-select w-100", id: "post_status_select" } %>
+      <%= f.hidden_field :is_published, value: "true", id: "is_published_input" %>
+      <%= f.hidden_field :is_draft, value: "false", id: "is_draft_input" %>
+   </div>
   </div>

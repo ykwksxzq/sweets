@@ -1,7 +1,9 @@
+<div class="container">
+<div class="row justify-content-center">
+<%= render 'layouts/error_messages', model: @post %>
 
-<h4>新規投稿</h4>
+<h4 class="title md-2">新規投稿</h4>
 
- <%= render 'layouts/error_messages', model: @post %>
 
 <%= form_with model: @post, url: posts_path, method: :post do |f| %>
 
@@ -13,3 +15,6 @@
 
 
 <% end %>
+
+</div>
+</div>
