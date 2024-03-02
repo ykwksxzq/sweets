@@ -1,18 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <a class="navbar-brand p-2" href="/">
+    <a class="navbar-brand" href="/">
         <%= link_to root_path do %>
         <%= image_tag('logo.jpg') %>
         <% end %>
     </a>
-     <div class="row"
-      <div class="col-md-6 align-self-center">
+      <div class="col-mg-6-md-4 align-self-center p-2">
         <% if user_signed_in? %>
-          <p class="text-primary p-3">ようこそ、<%= current_user.name %>さん！</p>
-         <% end %>
-       </div>
-
-       <div class="col-md-6 align-self-center">
+          <p class="text-primary">ようこそ、<%= current_user.name %>さん！</p>
+        <% end %>
+      </div>
 
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,16 +18,20 @@
      <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
+
+
         <% if user_signed_in? %>
         <li class="nav-item">
-          マイページ
+          My page
         </li>
         <li class="nav-item">
-            <%= link_to "投稿一覧", posts_path, class: 'nav-link' %>
+            <%= link_to "Sweets", posts_path, class: 'nav-link' %>
         </li>
-        レビュー一覧
+        <li class="nav-item">
+            Reviews
+        </li>
          <li class="nav-item">
-         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
          </li>
 
          <% elsif admin_signed_in? %>
@@ -57,22 +58,13 @@
          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post ,class: 'nav-link' %>
        　</li>
          <% end %>
+        </ul>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
     </div>
-  </div>
   </div>
 </nav>

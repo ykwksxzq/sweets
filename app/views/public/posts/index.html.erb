@@ -6,5 +6,22 @@
  <%= link_to "新規投稿", new_post_path %>
 
 
+<div class="card-group py-5">
+ <% @posts.each do |post| %>
+
+ <div class="col-12 col-md-6 col-lg-4 mb-3">
+   <div class="card h-100 w-100 mx-auto shadow-lg">
+
+
+
+ <%= image_tag post.get_image, class:"card-img-top img-fluid" %>
+
+
  </div>
+ </div>
+
+ <% end %>
+</div>
+ </div>
+
  </div>

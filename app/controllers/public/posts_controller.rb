@@ -30,6 +30,10 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def index
+    @posts = Post.where(status: :published)
+  end
+
 
 
 
