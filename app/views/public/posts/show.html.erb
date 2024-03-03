@@ -1,0 +1,46 @@
+<div class="container">
+ <div class="row justify-content-center">
+
+   <div class="row">
+   <div class="col-md-6">
+    <%= image_tag @post.get_image(600,600), class: "img-fluid" %>
+   </div>
+
+   <div class="col-md-6 p-5">
+    <h5 class="row justify-content-center">
+     <table class="table table-borderless">
+      <tr>
+       <th>title:</th>
+       <td><%= @post.title %></td>
+      </tr>
+
+      <tr>
+        <th>content:</th>
+        <td><%= @post.content %></td>
+      </tr>
+
+      <tr>
+       <th>genre:</th>
+       <td><%= @post.genre.name %></td>
+       </tr>
+      </table>
+     </h5>
+
+     <%= link_to mypage_path(@post.id) do %>
+     <%= image_tag @post.user.get_profile_image(100,100), class: "img-fluid mt-3 rounded-circle" %>
+     name: <%= @post.user.name %>
+
+     <% end %>
+
+
+
+
+    </div>
+   </div>
+
+
+
+</div>
+ </div>
+</div>
+</div>

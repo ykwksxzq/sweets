@@ -1,29 +1,23 @@
 <div class="container">
   <div class="row justify-content-center">
 
+   <h1 class="main-title mb-2">Sweets</h1>
 
-投稿一覧
- <%= link_to "新規投稿", new_post_path %>
+    <div class="card-group py-5">
+     <% @posts.each do |post| %>
 
+     <div class="col-12 col-md-6 col-lg-4 mb-2">
+      <div class="card d-block h-60 mx-auto">
 
-<div class="card-group py-5">
- <% @posts.each do |post| %>
+       <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image(400,400), class:"card-img-top img-fluid " %>
+       <% end %>
 
- <div class="col-12 col-md-6 col-lg-4 mb-2">
-   <div class="card h-80 w-60 mx-auto shadow-lg">
+      </div>
+     </div>
+     <% end %>
+    </div>
 
-
-
- <%= image_tag post.get_image, class:"card-img-top img-fluid " %>
-
-
+   <%= paginate @posts %>
  </div>
- </div>
-
- <% end %>
 </div>
-
-<%= paginate @posts %>
- </div>
-
- </div>

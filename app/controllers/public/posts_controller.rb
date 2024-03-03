@@ -34,6 +34,10 @@ class Public::PostsController < ApplicationController
     @posts = Post.where(status: :published).page(params[:page]).per(12)
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
 
 
 

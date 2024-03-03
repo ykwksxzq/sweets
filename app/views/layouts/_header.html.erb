@@ -22,7 +22,10 @@
 
         <% if user_signed_in? %>
         <li class="nav-item">
-          My page
+            <%= link_to "MyPage", mypage_path(current_user), class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "NewPost", new_post_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
             <%= link_to "Sweets", posts_path, class: 'nav-link' %>
