@@ -31,7 +31,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(status: :published)
+    @posts = Post.where(status: :published).page(params[:page]).per(12)
   end
 
 

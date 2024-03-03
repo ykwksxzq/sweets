@@ -9,12 +9,12 @@
 <div class="card-group py-5">
  <% @posts.each do |post| %>
 
- <div class="col-12 col-md-6 col-lg-4 mb-3">
-   <div class="card h-100 w-100 mx-auto shadow-lg">
+ <div class="col-12 col-md-6 col-lg-4 mb-2">
+   <div class="card h-80 w-60 mx-auto shadow-lg">
 
 
 
- <%= image_tag post.get_image, class:"card-img-top img-fluid" %>
+ <%= image_tag post.get_image, class:"card-img-top img-fluid " %>
 
 
  </div>
@@ -22,6 +22,8 @@
 
  <% end %>
 </div>
+
+<%= paginate @posts %>
  </div>
 
  </div>
