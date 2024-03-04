@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h1 class="main-title md-2">My Page</h1>
+  </div>
+   <div class="row">
+       <div class="col-md-4 p-5">
+
+           <%= image_tag @user.get_profile_image(100, 100), class:"card-img-top img-fluid" %>
+
+           <table class="table table-borderless">
+            <tr>
+              <th>name: </th>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th>introduction: </th><br>
+              <td><%= @user.introduction %></td>
+            </tr>
+           </table>
+
+       <%= link_to '編集', edit_user_path(current_user.id) %>
+
+
+       </div>
+
+       <div class="col-md-8 p-2">
+
+
+         <table class="table table-borderless">
+           <tr>
+             <th>
+              <%= link_to "Sweets" %>
+             </th>
+            </tr>
+  
+               <% @posts.each do |post| %>
+               
+               <td>
+                 <%= image_tag post.get_image(200, 200), class:"img-fluid" %>
+               </td>
+               <% end %>
+            <tr>
+             <th>
+               Drafts
+             </th>
+            </tr>
+            <tr>
+              <th>
+                Reviews
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Favorites
+              </th>
+            </tr>
+            <tr>
+              <th>
+                
+              </th>
+            </tr>
+
+         </table>
+         
+        </div>
+
+
+
+
+       </div>
+
+     </div>

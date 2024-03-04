@@ -27,9 +27,8 @@
      </h5>
 
      <%= link_to mypage_path(@post.id) do %>
-     <%= image_tag @post.user.get_profile_image(100,100), class: "img-fluid mt-3 rounded-circle" %>
+     <%= image_tag @post.user.get_profile_image(200,200), class: "img-fluid mt-3 rounded-circle" %>
      name: <%= @post.user.name %>
-
      <% end %>
 
 
