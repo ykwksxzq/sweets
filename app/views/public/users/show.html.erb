@@ -5,7 +5,7 @@
    <div class="row">
        <div class="col-md-4 p-5">
 
-           <%= image_tag @user.get_profile_image(100, 100), class:"card-img-top img-fluid" %>
+           <%= image_tag @user.get_profile_image(500, 500), class:"card-img-top img-fluid" %>
 
            <table class="table table-borderless">
             <tr>
@@ -13,12 +13,15 @@
               <td><%= @user.name %></td>
             </tr>
             <tr>
-              <th>introduction: </th><br>
               <td><%= @user.introduction %></td>
             </tr>
            </table>
 
-       <%= link_to '編集', edit_user_path(current_user.id) %>
+          <% if @user.matches_current_user?(current_user) %>
+
+          <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-success' %>
+
+          <% end %>
 
 
        </div>
@@ -32,36 +35,45 @@
               <%= link_to "Sweets" %>
              </th>
             </tr>
-  
+
                <% @posts.each do |post| %>
-               
+
                <td>
+                 <%= link_to post_path(post.id) do %>
                  <%= image_tag post.get_image(200, 200), class:"img-fluid" %>
+                 <% end %>
                </td>
                <% end %>
             <tr>
-             <th>
-               Drafts
-             </th>
-            </tr>
-            <tr>
+                  
               <th>
                 Reviews
               </th>
             </tr>
+           
+          <% if @user.owns?(current_user) %>
             <tr>
               <th>
                 Favorites
               </th>
             </tr>
+            
+            <tr>
+             <th>
+               Drafts
+             </th>
+            </tr>
+          
             <tr>
               <th>
-                
+
               </th>
             </tr>
+            
+          <% end %>
 
          </table>
-         
+
         </div>
 
 

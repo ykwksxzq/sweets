@@ -3,7 +3,7 @@
 
    <div class="row">
    <div class="col-md-6">
-    <%= image_tag @post.get_image(600,600), class: "img-fluid" %>
+    <%= image_tag @post.get_image(500,500), class: "img-fluid" %>
    </div>
 
    <div class="col-md-6 p-5">
@@ -26,14 +26,11 @@
       </table>
      </h5>
 
-     <%= link_to mypage_path(@post.id) do %>
-     <%= image_tag @post.user.get_profile_image(200,200), class: "img-fluid mt-3 rounded-circle" %>
-     name: <%= @post.user.name %>
+     <%= link_to mypage_path(@post.user.id) do %>
+     <%= image_tag @post.user.get_profile_image(100,100), class: "img-fluid mt-3 rounded-circle" %>
+      name: <%= @post.user.name %>
      <% end %>
-
-
-
-
+     
     </div>
    </div>
 
