@@ -4,12 +4,12 @@
 <div class="row justify-content-center">
 
 
-<%= form_with model: @post, url: posts_path, method: :post do |f| %>
+<%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
 
 <%= render partial: 'form', locals: {f:f } %>
 
  <div class="actions m-3">
- <%= f.submit 'Post', class: "btn btn-success" %>
+ <%= f.submit 'Up date', class: "btn btn-success" %>
 </div>
 
 

@@ -1,7 +1,7 @@
 <div class="container">
  <div class="row justify-content-center">
-  
-   <div class="col-md-6">
+
+   <div class="col-md-6 p-5">
     <%= image_tag @post.get_image(500,500) %>
    </div>
 
@@ -29,7 +29,16 @@
      <%= image_tag @post.user.get_profile_image(100,100), class: "img-fluid mt-3 rounded-circle" %>
       name: <%= @post.user.name %>
      <% end %>
-     
+
+
+     <% if @post.user.owns?(current_user) %>
+
+     <%= link_to "Edit", edit_post_path, class: "btn btn-success" %>
+
+
+
+     <% end %>
+
     </div>
    </div>
  </div>

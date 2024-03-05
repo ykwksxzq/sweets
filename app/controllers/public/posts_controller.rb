@@ -38,6 +38,34 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    @tag_list =  @post.tags.pluck(:name).join(',')
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.user_id = current_user.id
+    tag_list = params[:post][:name].split(',') #入力されたタグを受け取る
+
+    if @post.update(post_params) #もしpostの情報が更新されたら
+      if params[:post][:status]== "published"
+        @old_relations = PostTag.where(post_id: @post.id) # このpost_idに紐づいていたタグを@oldに入れる
+
+        @old_relations.each do |relation| # それらを取り出し、消す。消し終わる
+        relation.delete
+      end
+        @post.save_tag(tag_list)
+        redirect_to post_path(@post.id), notice: "投稿を更新しました！"
+      else
+        redirect_to posts_path, notice: '下書きに登録しました。'
+      end
+    else
+      render :edit, alert: "投稿を公開できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
+    end
+  end
+
+
 
 
 
