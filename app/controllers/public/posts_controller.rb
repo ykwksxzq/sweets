@@ -36,6 +36,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @post_tags = @post.tags
   end
 
   def edit
@@ -66,16 +67,18 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
-   @post = Post.find(params[:id])
-    if @post.destroy
+    @post = Post.find(params[:id])
+     if @post.destroy
       flash[:notice] = "投稿を削除しました"
       redirect_to posts_path
-    end
+     end
   end
-
-
-
-
+  
+  def search_tag
+    @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
+  end
 
   private
 

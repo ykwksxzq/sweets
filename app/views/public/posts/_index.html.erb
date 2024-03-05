@@ -1,0 +1,15 @@
+
+    <div class="card-group py-5">
+     <% @posts.each do |post| %>
+
+     <div class="col-12 col-md-6 col-lg-4 mb-2">
+      <div class="card d-block h-60 mx-auto">
+
+       <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image(400,400), class:"card-img-top img-fluid " %>
+       <% end %>
+
+      </div>
+     </div>
+     <% end %>
+    </div>

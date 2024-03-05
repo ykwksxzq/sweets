@@ -21,7 +21,15 @@
       <tr>
        <th>genre:</th>
        <td><%= @post.genre.name %></td>
-       </tr>
+      </tr>
+      <tr>
+       <th>tag: </th>
+       <td>
+       <% @post_tags.each do |tag| %>
+       <%= link_to tag.name, search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
+       <% end %>
+       </td>
+      </tr>
       </table>
      </h5>
 
