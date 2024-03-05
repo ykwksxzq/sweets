@@ -32,6 +32,8 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.where(status: :published).page(params[:page]).per(12)
+    @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
+    @genres = Genre.all
   end
 
   def show
@@ -73,10 +75,11 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path
      end
   end
-  
+
   def search_tag
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
     @tag = Tag.find(params[:tag_id])
+    @genres = Genre.all
     @posts = @tag.posts.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
   end
 

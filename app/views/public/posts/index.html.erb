@@ -1,4 +1,6 @@
 <div class="container">
+  <%= render 'public/genres/genres', genres: @genres %>
+
   <div class="row justify-content-center">
 
    <h1 class="main-title mb-2">Sweets (<%= @posts.total_count %>)</h1>
@@ -6,5 +8,8 @@
    <%= render 'index', posts: @posts %>
 
    <%= paginate @posts %>
- </div>
+
+   <%= render 'tag_list', tag_list: @tag_list %>
+
+  </div>
 </div>
