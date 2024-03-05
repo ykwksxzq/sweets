@@ -4,7 +4,7 @@
 
  <div class="row justify-content-center">
   <div class="col-md-5 col-sm-10 m-3">
-   <h4 class="text-dark p-4 mb-0">プロフィール編集</h4>
+   <h4 class="text-dark p-4 mb-0">User Edit</h4>
 
    <%= form_with model: @user, url:user_path(@user.id), method: :patch do |f| %>
 
@@ -19,5 +19,9 @@
 
 <% end %>
 
-<p><%= link_to "退会する", class: "btn btn-danger" %></p>
-<p><%= link_to "マイページに戻る", mypage_path, class: "underline" %></p>
+<h4>Cancel my account</h4>
+
+<div>Unhappy? <%= link_to "Cancel my account", confirm_unsubscribe_path, class: "btn btn-danger" %>
+</div>
+<p><%= link_to "Back", :back %></p>
+

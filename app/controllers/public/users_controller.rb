@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
@@ -19,6 +19,14 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+   current_user.update(is_withdrawn: true)
+   sign_out_and_redirect(current_user)
+   flash[:notice] = "退会処理を実行いたしました"
+   redirect_to root_path
+  end
+
 
   private
 
