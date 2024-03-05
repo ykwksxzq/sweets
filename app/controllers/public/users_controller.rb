@@ -27,6 +27,12 @@ class Public::UsersController < ApplicationController
    redirect_to root_path
   end
 
+  def mypost
+    @posts = current_user.posts.where(status: :published).page(params[:page]).per(12)
+  end
+
+
+
 
   private
 

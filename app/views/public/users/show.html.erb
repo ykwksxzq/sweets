@@ -4,7 +4,6 @@
   </div>
    <div class="row">
        <div class="col-md-4 p-5">
-
            <%= image_tag @user.get_profile_image(500, 500), class:"card-img-top img-fluid" %>
 
            <table class="table table-borderless">
@@ -18,26 +17,18 @@
            </table>
 
           <% if @user.matches_current_user?(current_user) %>
-
-          <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-success' %>
-
+            <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-success' %>
           <% end %>
-
-
        </div>
 
        <div class="col-md-8 p-2">
-
-
          <table class="table table-borderless">
            <tr>
              <th>
-              <%= link_to "Sweets" %> (全<%= @posts.total_count %>件)
+              <%= link_to "Sweets", mypost_path %> (全<%= @posts.total_count %>件)
              </th>
             </tr>
-
-               <% @posts.each do |post| %>
-
+              <% @posts.each do |post| %>
                <td>
                  <%= link_to post_path(post.id) do %>
                  <%= image_tag post.get_image(200, 200) %>
@@ -45,31 +36,30 @@
                </td>
                <% end %>
             <tr>
-                  
-              <th>
+               <th>
                 Reviews
-              </th>
+               </th>
             </tr>
-           
+
           <% if @user.owns?(current_user) %>
             <tr>
               <th>
                 Favorites
               </th>
             </tr>
-            
+
             <tr>
              <th>
-               Drafts
+               <%= link_to "Drafts", post_confirm_path %>
              </th>
             </tr>
-          
+
             <tr>
               <th>
 
               </th>
             </tr>
-            
+
           <% end %>
 
          </table>

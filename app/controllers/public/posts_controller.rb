@@ -12,17 +12,18 @@ class Public::PostsController < ApplicationController
     # 投稿ボタンを押下した場合
     if params[:post][:status] == "published"
        if @post.save(is_published: true)
-          redirect_to post_path(@post.id), notice: "投稿を公開しました！"
+         flash[:notice] = "投稿を公開しました"
+         redirect_to post_path(@post.id)
        else
-          @post.save_tag(tag_list)
-          flash.now[:alert] = "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"
-          render :new
+         @post.save_tag(tag_list)
+         flash.now[:alert] = "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"
+         render :new
        end
         # 下書きボタンを押下した場合
     else
         if @post.save(is_draft: true)
-           flash[:notice] = "下書きを保存しました"
-           redirect_to user_path(current_user), notice: "投稿を下書き保存しました！"
+           flash[:notice] = "下書きに保存しました"
+           redirect_to mypage_path(current_user)
         else
            flash.now[:alert] = "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"
            render :new
@@ -61,7 +62,7 @@ class Public::PostsController < ApplicationController
         @post.save_tag(tag_list)
         redirect_to post_path(@post.id), notice: "投稿を更新しました！"
       else
-        redirect_to posts_path, notice: '下書きに登録しました。'
+        redirect_to mypage_path(current_user), notice: '下書きに登録しました。'
       end
     else
       render :edit, alert: "投稿を公開できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
@@ -82,6 +83,11 @@ class Public::PostsController < ApplicationController
     @genres = Genre.all
     @posts = @tag.posts.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
   end
+
+  def confirm
+    @posts = current_user.posts.where(status: :draft).page(params[:page]).per(12)
+  end
+
 
   private
 

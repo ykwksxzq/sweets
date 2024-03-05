@@ -2,7 +2,9 @@
 
  <%= render 'layouts/error_messages', model: @post %>
 <div class="row justify-content-center">
-
+ <h1 class="main-title mb-2">New Post</h1>
+</div>
+ <div class="row justify-content-center">
 
 <%= form_with model: @post, url: posts_path, method: :post do |f| %>
 

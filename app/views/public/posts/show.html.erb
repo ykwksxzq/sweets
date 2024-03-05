@@ -35,15 +35,14 @@
 
      <%= link_to mypage_path(@post.user.id) do %>
      <%= image_tag @post.user.get_profile_image(100,100), class: "img-fluid mt-3 rounded-circle" %>
-      name: <%= @post.user.name %>
      <% end %>
-
+     name: <%= @post.user.name %>
 
      <% if @post.user.owns?(current_user) %>
 
-     <%= link_to "Edit", edit_post_path, class: "btn btn-success" %>
+       <%= link_to "Edit", edit_post_path, class: "btn btn-success" %>
 
-     <%= link_to "delete", post_path(@post.id),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
+       <%= link_to "delete", post_path(@post.id),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
 
      <% end %>
 
