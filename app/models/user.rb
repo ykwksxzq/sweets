@@ -5,15 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
-  
+  has_many :reviews, dependent: :destroy
+
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :introduction, length: { maximum: 100 }
 
-  
+
   # mypage用
   has_one_attached :profile_image
-  
+
   def get_profile_image(width,height)
    unless profile_image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -21,7 +22,7 @@ class User < ApplicationRecord
    end
      profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   GUEST_MEMBER_EMAIL = "guest@example.com"
 
   #ゲストログイン用
@@ -33,11 +34,11 @@ class User < ApplicationRecord
     user.name = "ゲスト"
     end
   end
-  
+
   def guest_user?
     email == GUEST_MEMBER_EMAIL
   end
-  
+
   def owns?(other_user)
     self == other_user
   end
@@ -48,5 +49,5 @@ class User < ApplicationRecord
   def matches_current_user?(other_user)
     self == other_user && !other_user.guest_user?
   end
-  
+
 end

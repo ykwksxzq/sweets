@@ -67,3 +67,16 @@ footer {
   border: solid 1px #930403;
 }
 
+.rating-box .ratings .fa {
+  font-size: 30px;
+  color: #ffcc00;
+  corsor: pointer;
+}
+
+.main-rating {
+  display: flex;
+}
+
+.rating-value-display {
+  font-size: 20px;
+}

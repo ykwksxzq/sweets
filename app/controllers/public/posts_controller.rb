@@ -40,6 +40,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
+    @review = Review.new
   end
 
   def edit
@@ -92,7 +93,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :genre_id, :title, :content, :status, :image, tag_ids: [])
+    params.require(:post).permit(:user_id, :genre_id, :title, :content, :status, :rating, :star, :image, tag_ids: [])
   end
 
 end

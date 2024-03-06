@@ -1,0 +1,24 @@
+
+
+<%= form_with model: @review, url: post_reviews_path(@post), method: :post do |f| %>
+<div class="rating-box">
+<div class="main-rating">
+  <div class="ratings mb-3">
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+  </div>
+  </div>
+  <div class="ml-3 rating-value-display">
+    <span id="rating-value-display">0</span>/5</div>
+</div>
+<%= f.hidden_field :post_id, value: @post.id %>
+<%= f.hidden_field :rating, id: "rating-value" %>
+<%= f.text_field :content, class: 'form-control' %>
+ <div class="actions m-3">
+ <%= f.submit 'Review', class: "btn btn-success" %>
+</div>
+
+<% end %>
