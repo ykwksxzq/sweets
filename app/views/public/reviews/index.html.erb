@@ -1,1 +1,50 @@
-Reviews
+<section class="section mt-6">
+  <div class="container">
+     <div class="row justify-content-center">
+      <h1 class="main-title md-2">Reviews</h1>
+    </div>
+     <div class="row justify-content-center">
+      <div class="col-md-8 mb-2">
+        <div class="card mb-6">
+          <header class="card-header">
+            <p class="card-header-title">
+             <%= @post.title %>
+            </p>
+          </header>
+          <div class="card-content">
+
+            <%= link_to post_path(@post.id) do %>
+            <%= image_tag @post.get_image(400, 400), class:"card-img-top";%>
+            <% end %>
+
+            <div class="content average-score">
+              <div class="star-rating mb-2">
+                <div class="star-rating-front" style="width: %">★★★★★</div>
+                <div class="star-rating-back">★★★★★</div>
+              </div>
+              <div class="average-score-display ml-3 pt-2">
+                点（<%= @post.reviews.count %>件のレビュー）
+              </div>
+            </div>
+          </div>
+        </div>
+        <table class="table is-fullwidth has-text-centered">
+          <thead>
+            <tr>
+              <th>Name</th><th>score</th><th>content</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reviews.each do |review| %>
+              <tr>
+                <td><%= review.user.name %></td>
+                <td><%= review.rating %></td>
+                <td><%= review.content %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

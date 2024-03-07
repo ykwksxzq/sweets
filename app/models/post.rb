@@ -45,5 +45,22 @@ class Post < ApplicationRecord
       self.tags << new_post_tag
     end
   end
+  
+  
+  def avg_score
+    unless self.reviews.empty?
+      reviews.average(:rating).round(1).to_f
+    else
+      0.0
+    end
+  end
+
+  def review_score_percentage
+    unless self.reviews.empty?
+      reviews.average(:rating).round(1).to_f*100/5
+    else
+      0.0
+    end
+  end
 
 end

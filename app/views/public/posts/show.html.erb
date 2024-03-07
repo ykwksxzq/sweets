@@ -1,24 +1,62 @@
 <div class="container">
 
-  <%= render 'layouts/error_messages', model: @review %>
+ <%= render 'layouts/error_messages', model: @review %>
 
  <div class="row justify-content-center">
 
-   <div class="col-md-6 p-5">
-    <%= image_tag @post.get_image(500,500) %>
-   </div>
+   <div class="col-mb-6 p-3">
+    <div class="content">
+     <%= image_tag @post.get_image(500,500), class: "img-fluid" %>
+    </div>
 
-   <div class="col-md-6 p-5">
+   
+     <%= link_to mypage_path(@post.user.id) do %>
+      <%= image_tag @post.user.get_profile_image(150,150), class: "img-fluid mt-3 rounded-circle" %>
+     <% end %>
+       name: <%= @post.user.name %>
+
+     <% if @post.user.owns?(current_user) %>
+
+      <div class="btn group">
+       <%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-success" %>
+       <%= link_to "delete", post_path(@post.id),class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
+      </div>
+
+     <% end %>
+    </div>
+
+
+   <div class="col-md-6 p-3">
     <h5 class="row justify-content-center">
      <table class="table table-borderless">
+      <tr>
+        <th>reviews:</th>
+        <td>
+         <div class="content average-score">
+              <div class="star-rating mb-2">
+                <div class="star-rating-front" style="width: %">★★★★★</div>
+                <div class="star-rating-back">★★★★★</div>
+              </div>
+              <div class="average-score-display ml-3 pt-2">
+               <%= link_to post_reviews_path(@post) do %>
+                点（<%= @post.reviews.count %>reviews）
+               <% end %>
+              </div>
+            </div>
+          </td>
+      </tr>
       <tr>
        <th>title:</th>
        <td><%= @post.title %></td>
       </tr>
+      <tr>
+       <th>score: </th>
+       <td><%= @post.rating %></td>
+      </tr>
 
       <tr>
         <th>content:</th>
-        <td><%= @post.content %></td>
+        <td><%=safe_join(@post.content.split("\n"),tag(:br))%>
       </tr>
 
       <tr>
@@ -39,23 +77,13 @@
       </table>
      </h5>
 
-     <%= link_to mypage_path(@post.user.id) do %>
-     <%= image_tag @post.user.get_profile_image(100,100), class: "img-fluid mt-3 rounded-circle" %>
-     <% end %>
-     name: <%= @post.user.name %>
-
-     <% if @post.user.owns?(current_user) %>
-
-      <div class="btn group">
-       <%= link_to "Edit", edit_post_path(@post), class: "btn btn-success" %>
-       <%= link_to "delete", post_path(@post.id),class: "btn btn-danger", method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
-      </div>
-
-     <% end %>
-     
-      <h2>Review</h2>
-      <%= render partial: 'public/reviews/form', review: @review, post: @post %>
+     <div class="row p-3">
+      <div class="col">
+       <h3 class="title">Write to Review</h3>
+        <%= render partial: 'public/reviews/form', review: @review, post: @post %>
+       </div>
+     </div>
 
     </div>
    </div>
- </div>
+</div>

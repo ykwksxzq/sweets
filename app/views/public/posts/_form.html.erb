@@ -13,6 +13,22 @@
    </div>
   </div>
 
+  <div class="rating-box">
+  <div class="main-rating">
+  <div class="ratings mb-3">
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+    <span class="fa fa-star-o" id="star"></span>
+  </div>
+  </div>
+  <div class="ml-3 rating-value-display">
+    <span id="rating-value-display">0</span>/5</div>
+</div>
+  <%= f.hidden_field :rating, id: "rating-value" %>
+
+
   <div class="form-group row">
     <div class="field">
      <h6 class="text-dark p-2 mb-0">Content(200文字以内)</h6>

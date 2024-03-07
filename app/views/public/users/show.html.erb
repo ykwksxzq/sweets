@@ -3,7 +3,7 @@
     <h1 class="main-title md-2">My Page</h1>
   </div>
    <div class="row">
-       <div class="col-md-4 p-5">
+       <div class="col-md-4 p-2">
            <%= image_tag @user.get_profile_image(500, 500), class:"card-img-top img-fluid" %>
 
            <table class="table table-borderless">
@@ -12,7 +12,8 @@
               <td><%= @user.name %></td>
             </tr>
             <tr>
-              <td><%= @user.introduction %></td>
+              <td><%=safe_join(@user.introduction.split("\n"),tag(:br))%>
+              </td>
             </tr>
            </table>
 

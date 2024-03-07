@@ -1,16 +1,28 @@
-<div class="card-deck">
- <% posts.each do |post| %>
-  <div class="col-12 col-md-6 col-lg-4 mb-3">
-   <div class="card mx-auto ">
 
-    <%= link_to post_path(post.id) do %>
-     <%= image_tag post.get_image(200, 200), class:"card-img-top img-fluid";%>
-    <% end %>
+    <div class="card-group py-5">
+     <% @posts.each do |post| %>
 
-    <div class="card-body">
+     <div class="col-12 col-md-6 col-lg-4 mb-2">
+      <div class="card d-block h-60 mx-auto">
 
+       <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image(400,400), class:"card-img-top img-fluid " %>
+       <% end %>
+       
+       
+        <div class="card-body">
+         <div class="content">
+                <div class="content average-score">
+                  <div class="star-rating mb-2">★★★★★</div>
+                    <div class="star-rating-back">★★★★★</div>
+                  </div>
+                  <div class="average-score-display ml-3 pt-2">
+                    <%= post.avg_score %>点（<%= post.reviews.count %>件のレビュー）
+                  </div>
+                </div>
+              </div>
+
+      </div>
+     </div>
+     <% end %>
     </div>
-  </div>
- </div>
- <% end %>
-</div>

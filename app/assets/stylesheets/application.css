@@ -31,7 +31,7 @@ sub-title {
   display: table;
   background-image: url("24840791.jpg");
   background-color:rgba(255,255,255,0.2);
-  background-blend-mode:lighten;
+  background-blend-mode: lighten;
   background-size: 100% 100%;
 }
 
@@ -67,10 +67,10 @@ footer {
   border: solid 1px #930403;
 }
 
-.rating-box .ratings .fa {
+.rating-box .ratings .fa{
   font-size: 30px;
-  color: #ffcc00;
-  corsor: pointer;
+  color:#ffcc00;
+  cursor: pointer;
 }
 
 .main-rating {
@@ -79,4 +79,28 @@ footer {
 
 .rating-value-display {
   font-size: 20px;
+}
+.star-rating {
+  position: relative;
+  width: 5em;
+  height: 1em;
+  font-size: 25px;
+}
+
+.star-rating-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-back {
+  color: #ccc;
+}
+
+.average-score {
+  display: flex;
+}
+.average-score-display {
+  font-size: 16px;
 }
