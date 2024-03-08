@@ -31,6 +31,10 @@ class Public::UsersController < ApplicationController
     @posts = current_user.posts.where(status: :published).page(params[:page]).per(12)
   end
 
+  def myreviews
+    @user = User.find(params[:user_id])
+    @reviews = @user.reviews
+  end
 
 
 

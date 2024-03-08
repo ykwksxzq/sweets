@@ -16,14 +16,15 @@
             <%= link_to post_path(@post.id) do %>
             <%= image_tag @post.get_image(400, 400), class:"card-img-top";%>
             <% end %>
-
+          <div class="card-body">
+           <div class="content">
             <div class="content average-score">
               <div class="star-rating mb-2">
-                <div class="star-rating-front" style="width: %">★★★★★</div>
+                <div class="star-rating-front" style="width: <%= @post.review_score_percentage %>%">★★★★★</div>
                 <div class="star-rating-back">★★★★★</div>
               </div>
               <div class="average-score-display ml-3 pt-2">
-                点（<%= @post.reviews.count %>件のレビュー）
+                score: <%= @post.avg_score %> （<%= @post.reviews.count %> reviews）
               </div>
             </div>
           </div>
@@ -31,7 +32,7 @@
         <table class="table is-fullwidth has-text-centered">
           <thead>
             <tr>
-              <th>Name</th><th>score</th><th>content</th>
+              <th>Name</th><th>Score</th><th>Content</th>
             </tr>
           </thead>
           <tbody>

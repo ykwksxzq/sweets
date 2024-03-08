@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(status: :published).page(params[:page]).per(12)
+    @posts = Post.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
     @genres = Genre.all
   end
@@ -41,6 +41,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @review = Review.new
+    @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
   end
 
   def edit

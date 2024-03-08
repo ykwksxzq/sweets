@@ -12,7 +12,7 @@
               <td><%= @user.name %></td>
             </tr>
             <tr>
-              <td><%=safe_join(@user.introduction.split("\n"),tag(:br))%>
+              <td><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
               </td>
             </tr>
            </table>
@@ -26,7 +26,7 @@
          <table class="table table-borderless">
            <tr>
              <th>
-              <%= link_to "Sweets", mypost_path %> (全<%= @posts.total_count %>件)
+              <%= link_to "My Sweets", mypost_path %> (全<%= @posts.total_count %>件)
              </th>
             </tr>
               <% @posts.each do |post| %>
@@ -38,7 +38,7 @@
                <% end %>
             <tr>
                <th>
-                Reviews
+                 <%= link_to "My Reviews", myreview_path %>
                </th>
             </tr>
 
@@ -51,7 +51,7 @@
 
             <tr>
              <th>
-               <%= link_to "Drafts", post_confirm_path %>
+               <%= link_to "My Drafts", post_confirm_path %>
              </th>
             </tr>
 

@@ -8,30 +8,36 @@
 
  <div class="form-group row">
    <div class="field">
-    <h5 class="text-dark p-2 mb-0">Title(30文字以内）</h5>
+    <h5 class="text-dark p-2 mb-0">Title (30文字以内）</h5>
     <%= f.text_field :title, class: 'form-control', placeholder:"30文字以内で入力"  %>
    </div>
   </div>
 
-  <div class="rating-box">
-  <div class="main-rating">
-  <div class="ratings mb-3">
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-  </div>
-  </div>
-  <div class="ml-3 rating-value-display">
-    <span id="rating-value-display">0</span>/5</div>
-</div>
-  <%= f.hidden_field :rating, id: "rating-value" %>
+  <div class="form-group row">
+   <div class="field">
+    <h5 class="text-dark p-2 mb-0">Score</h5>
+
+    <div class="rating-box">
+     <div class="main-rating">
+      <div class="ratings mb-3">
+       <span class="fa fa-star-o" id="star"></span>
+       <span class="fa fa-star-o" id="star"></span>
+       <span class="fa fa-star-o" id="star"></span>
+       <span class="fa fa-star-o" id="star"></span>
+       <span class="fa fa-star-o" id="star"></span>
+      </div>
+       <div class="ml-3 rating-value-display">
+       <span id="rating-value-display">0</span>/5</div>
+      </div>
+     </div>
+     <%= f.hidden_field :rating, id: "rating-value" %>
+    </div>
+   </div>
 
 
   <div class="form-group row">
     <div class="field">
-     <h6 class="text-dark p-2 mb-0">Content(200文字以内)</h6>
+     <h6 class="text-dark p-2 mb-0">Content (200文字以内)</h6>
       <%= f.text_area :content, class: 'form-control', placeholder:"200文字以内で入力" %>
     </div>
    </div>
