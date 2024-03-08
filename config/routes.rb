@@ -42,6 +42,7 @@ scope module: :public do
   resources :genres, only:[:index]
   resources :users, only: [:index, :create, :edit, :update, :destroy]
   resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
+   resource :favorite, only: [:create, :destroy]
    resources :reviews, only: [:index, :create]
   end
 end
