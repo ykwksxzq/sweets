@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = Post.published.where(user_id: params[:id]).page(params[:page]).per(4).order(created_at: :desc)
+    @reviews = current_user.reviews.page(params[:page]).per(12)
   end
 
   def edit
@@ -28,12 +29,11 @@ class Public::UsersController < ApplicationController
   end
 
   def mypost
-    @posts = current_user.posts.where(status: :published).page(params[:page]).per(12)
+    @posts = current_user.posts.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
   end
 
-  def myreviews
-    @user = User.find(params[:user_id])
-    @reviews = @user.reviews
+  def myreview
+    @reviews = current_user.reviews.page(params[:page]).per(12).order(created_at: :desc)
   end
 
 

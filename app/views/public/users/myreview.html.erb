@@ -1,68 +1,55 @@
 <div class="container">
   <div class="row justify-content-center">
 
-   <h1 class="main-title mb-2">My Reviews</h1>
-   </div>
-   <div class="col m-3">
+   <h1 class="main-title mb-2">My Reviews(<%= @reviews.total_count %>)</h1>
+  </div>
 
-    <% if @reviews.present? %>
-
-       <div class="card-content">
-
-            <%= link_to post_path(@post.id) do %>
-            <%= image_tag @reviews.post.get_image(400, 400), class:"card-img-top";%>
-            <% end %>
-
-            <div class="content average-score">
-              <div class="star-rating mb-2">
-                <div class="star-rating-front" style="width: %">★★★★★</div>
-                <div class="star-rating-back">★★★★★</div>
-              </div>
-              <div class="average-score-display ml-3 pt-2">
-                点（<%= @post.reviews.count %>件のレビュー）
-              </div>
-            </div>
-          </div>
-        </div>
-        <table class="table is-fullwidth has-text-centered">
-          <thead>
-            <tr>
-              <th>Name</th><th>score</th><th>content</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @reviews.each do |review| %>
-              <tr>
-                <td><%= review.user.name %></td>
-                <td><%= review.rating %></td>
-                <td><%= review.content %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-
-
+    <div class="card-group py-5">
+     <% @reviews.each do |review| %>
+      <div class="col-12 col-md-6 mb-2">
+      <div class="card h-100 w-100 mx-auto">
+        <header class="card-header">
+            <p class="card-header-title">
+             <h5>Title: <%= review.post.title %></h5>
+             <h6>Name: <%= review.post.user.name %></h6>
+            </p>
+        </header>
         <div class="card-body">
          <div class="content">
-                <div class="content average-score">
+            <div class="content average-score">
                   <div class="star-rating mb-2">
-                   <div class="star-rating-front" style="width: <%= post.review_score_percentage %>%">★★★★★</div>
+                   <div class="star-rating-front" style="width: <%= review.post.review_score_percentage %>%">★★★★★</div>
                     <div class="star-rating-back">★★★★★</div>
                   </div>
                   <div class="average-score-display ml-3 pt-2">
-                   score: <%= post.avg_score %>（<%= post.reviews.count %>）
+                   score: <%= review.post.avg_score %>
+                   <%= link_to post_reviews_path(review.post) do %>
+                   （<%= review.post.reviews.count %>）
+                   <% end %>
                   </div>
-                </div>
               </div>
-           </div>
-         </div>
-     
-     </div>
-   <%= paginate @reviews %>
-   
-  <% end %>
 
-  </div>
-</div>
-</div>
+             <%= link_to post_path(review.post.id) do %>
+              <%= image_tag review.post.get_image(300,300), class:"card-img-top img-fluid" %>
+             <% end %>
+           </div>
+           </div>
+          <div class="card-text p-3">
+          <table>
+            <tr>
+              <th>Score: </th>
+              <td><%= review.rating %></td>
+            </tr>
+            <tr>
+              <th>Content: </th>
+              <td><%= review.content %></td>
+             </tr>
+          </table>
+         </div>
+        </div>
+      </div>
+      <% end %>
+     </div>
+     <%= paginate @reviews %>
+   </div>
+
