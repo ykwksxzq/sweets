@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center">
+
+   <h1 class="main-title mb-2">My Favorite (<%= @favorites.total_count %>)</h1>
+   </div>
+   <div class="col m-3">
+
+    <div class="card-group py-5">
+     <% @favorites.each do |favorite| %>
+
+     <div class="col-12 col-md-6 mb-2">
+      <div class="card h-100 w-100 mx-auto">
+
+       <%= link_to post_path(favorite.post.id) do %>
+        <%= image_tag favorite.post.get_image(300,300), class:"card-img-top img-fluid " %>
+       <% end %>
+
+
+        <div class="card-body">
+         <div class="content">
+                <div class="content average-score">
+                  <div class="star-rating mb-2">
+                   <div class="star-rating-front" style="width: <%= favorite.post.review_score_percentage %>%">★★★★★</div>
+                    <div class="star-rating-back">★★★★★</div>
+                  </div>
+                  <div class="average-score-display ml-3 pt-2">
+                   score: <%= favorite.post.avg_score %>（<%= favorite.post.reviews.count %>）
+                  </div>
+                </div>
+              </div>
+           </div>
+         </div>
+     </div>
+     <% end %>
+    </div>
+
+   <%= paginate @favorites %>
+
+  </div>
+</div>
+</div>

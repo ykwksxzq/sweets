@@ -34,8 +34,9 @@ scope module: :public do
 
   get 'posts/confirm' => 'posts#confirm', as: 'post_confirm'
   get 'search_tag'=>'posts#search_tag'
-  get 'users/mypost' => 'users#mypost', as: 'mypost'
-  get 'users/myreview' => 'users#myreview', as: 'myreview'
+  get 'users/mysweets' => 'users#mysweets', as: 'mysweets'
+  get 'users/myreviews' => 'users#myreviews', as: 'myreviews'
+  get 'users/myfavorites' => 'users#myfavorites', as: 'myfavorites'
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
   get 'users/mypage/:id' => 'users#show', as: 'mypage'
 

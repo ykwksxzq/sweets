@@ -4,6 +4,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = Post.published.where(user_id: params[:id]).page(params[:page]).per(4).order(created_at: :desc)
     @reviews = current_user.reviews.page(params[:page]).per(12)
+    @favorites = current_user.favorites.page(params[:page]).per(12).order(created_at: :desc)
   end
 
   def edit
@@ -28,14 +29,17 @@ class Public::UsersController < ApplicationController
    redirect_to root_path
   end
 
-  def mypost
+  def mysweets
     @posts = current_user.posts.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
   end
 
-  def myreview
+  def myreviews
     @reviews = current_user.reviews.page(params[:page]).per(12).order(created_at: :desc)
   end
 
+  def myfavorites
+    @favorites = current_user.favorites.page(params[:page]).per(12).order(created_at: :desc)
+  end
 
 
   private
