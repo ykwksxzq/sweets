@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   enum status: { published: 0, draft: 1 }
   #0:公開中　1:下書き
@@ -68,4 +69,12 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def self.search_by(keyword)
+    published.where('title LIKE ? or content LIKE ?', "%#{keyword}%", "%#{keyword}%")
+  end
+
+  def self.search(query)
+    where("title LIKE ? OR introduction LIKE ?", "%#{query}%", "%#{query}%")
+  end
+  
 end

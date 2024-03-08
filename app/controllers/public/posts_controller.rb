@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_matching_login_user, only:[:edit, :update, :destroy]
+
 
   def new
     @post = Post.new
@@ -42,7 +45,8 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @review = Review.new
-    @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
+    @reviews = @post.reviews.page(params[:page]).per(3).order(created_at: :desc)
+    @comment = Comment.new
   end
 
   def edit
@@ -92,10 +96,29 @@ class Public::PostsController < ApplicationController
   end
 
 
+
+
+  def self.search(keyword)
+   if params[:title, :content].present?
+     @post = Post.self.search_by(keyword)
+     @keyword = params[:title, :content]
+   else
+     @posts = Post.all
+   end
+  end
+
+
+
   private
 
   def post_params
     params.require(:post).permit(:user_id, :genre_id, :title, :content, :status, :rating, :star, :image, tag_ids: [])
   end
 
+  def is_matching_login_user
+   @post = Post.find(params[:id])
+   unless @post.user.id == current_user.id
+    redirect_to posts_path
+   end
+  end
 end

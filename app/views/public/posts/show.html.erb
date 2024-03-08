@@ -87,12 +87,12 @@
      <% if @reviews.present? %>
         <div class="card mb-6">
           <header class="card-header">
-            <h5 class="card-header-title">
+            <h6 class="card-header-title">
              Reviews:
              <%= link_to post_reviews_path(@post) do %>
                （<%= @post.reviews.count %> ）
              <% end %>
-            </h5>
+            </h6>
           </header>
           <div class="card-body">
            <div class="content">
@@ -123,10 +123,16 @@
             <% end %>
           </tbody>
         </table>
-      </div>
+       </div>
       <%= paginate @reviews %>
+
+        <% end %>
+
+
+      <%= render 'public/comments/index', posts: @posts %>
+
+
     </div>
-<% end %>
 
     </div>
    </div>

@@ -34,6 +34,8 @@ scope module: :public do
 
   get 'posts/confirm' => 'posts#confirm', as: 'post_confirm'
   get 'search_tag'=>'posts#search_tag'
+  get '/search', to: 'posts#search', as: 'search'
+  post '/search',  to: 'posts#search'
   get 'users/mysweets' => 'users#mysweets', as: 'mysweets'
   get 'users/myreviews' => 'users#myreviews', as: 'myreviews'
   get 'users/myfavorites' => 'users#myfavorites', as: 'myfavorites'
@@ -44,6 +46,7 @@ scope module: :public do
   resources :users, only: [:index, :create, :edit, :update, :destroy]
   resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
    resource :favorite, only: [:create, :destroy]
+   resources :comments, only: [:create, :destroy]
    resources :reviews, only: [:index, :create]
   end
 end

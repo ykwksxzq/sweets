@@ -25,10 +25,10 @@
           <%= link_to "MyPage", mypage_path(current_user), class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to "NewPost", new_post_path, class: 'nav-link' %>
+          <%= link_to "Sweets", posts_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to "Sweets", posts_path, class: 'nav-link' %>
+          <%= link_to "New Post", new_post_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
@@ -49,21 +49,16 @@
 
          <% else %>
          <li class="nav-item">
-          <%= link_to "新規登録", new_user_registration_path, class: 'nav-link' %>
+          <%= link_to "Sign up", new_user_registration_path, class: 'nav-link' %>
          </li>
          <li class="nav-item">
-          <%= link_to "ログイン", new_user_session_path, class: 'nav-link' %>
+          <%= link_to "Log in", new_user_session_path, class: 'nav-link' %>
          </li>
          <li class="nav-item">
-         <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post ,class: 'nav-link' %>
+         <%= link_to "Guest Log in", users_guest_sign_in_path, method: :post ,class: 'nav-link' %>
          </li>
          <% end %>
         </ul>
-
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
     </div>
   </div>
