@@ -3,7 +3,7 @@
      <div class="row justify-content-center">
       <h1 class="main-title md-2">Reviews</h1>
     </div>
-    
+
      <div class="row justify-content-center">
       <div class="col-md-8 mb-2">
         <div class="card mb-6">
@@ -28,15 +28,16 @@
               </div>
             </div>
           </div>
-        </div>
-        <table class="table is-fullwidth has-text-centered">
+            <div class="row justify-content-end">
+          </div>
+          <table class="table is-fullwidth has-text-centered">
           <thead>
             <tr>
               <th>Name</th><th>Score</th><th>Content</th>
             </tr>
           </thead>
           <tbody>
-            <% @reviews.each do |review| %>
+            <% @reviews_high_rating.each do |review| %>
               <tr>
                 <td><%= review.user.name %></td>
                 <td><%= review.rating %></td>

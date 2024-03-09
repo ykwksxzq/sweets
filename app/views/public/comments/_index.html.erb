@@ -28,9 +28,8 @@
     </div>
    </div>
    </div>
-   <% if post.comments.present? && comment.present? %>
-   <div class="new-comment card-text">
-     <%= form_with model: [post, comment] do |f| %>
+    <div class="new-comment card-text">
+     <%= form_with model: [post, comment || Comment.new] do |f| %>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">To Comment</label>
           <%= f.text_area :content, rows: '3', class: "form-control", placeholder: "コメントをここに(100文字以内)" %>
@@ -38,4 +37,4 @@
        <%= f.submit "Post", class:"btn btn-info mt-2 float-right" %>
      <% end %>
    </div>
-   <% end %>
+

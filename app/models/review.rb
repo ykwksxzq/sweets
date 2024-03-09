@@ -6,4 +6,7 @@ class Review < ApplicationRecord
   validates :rating, presence: true
   validates :content, presence: true, length: { maximum: 200 }
 
+  scope :order_by_rating, -> { order(rating: :desc) }
+
+
 end

@@ -47,6 +47,9 @@
 
      <table class="table table-borderless">
       <tr>
+       <th>date:</th>
+       <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
        <th>title:</th>
        <td><%= @post.title %></td>
       </tr>
@@ -125,19 +128,13 @@
        </div>
       <%= paginate @reviews %>
 
-　　　<% else %>
-  　　<tr>
-   　　 <td colspan="2">レビューはありません。</td>
- 　　 </tr>
-　　<% end %>
+      <% else %>
+      <tr>
+       <td colspan="2">レビューはありません。</td>
+      </tr>
+      <% end %>
 
-　　<%= render 'public/comments/index',  post: @post, comment: @comment %>
-
-
-
-
-
-
+      <%= render 'public/comments/index',  post: @post, comment: @comment %>
     </div>
 
     </div>

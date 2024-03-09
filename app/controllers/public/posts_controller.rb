@@ -36,6 +36,19 @@ class Public::PostsController < ApplicationController
     @posts = Post.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
     @genres = Genre.all
+
+    #ソート機能のためのif文
+    @posts = if params[:latest]
+      Post.published.latest.page(params[:page]).per(12)
+    elsif params[:old].present?
+      Post.published.old.page(params[:page]).per(12)
+    elsif params[:rating_count].present?
+      Post.published.reviews_rating_count.page(params[:page]).per(12)
+    elsif params[:favorites_count].present?
+      Post.published.favorites_count.page(params[:page]).per(12)
+    else
+      Post.published.page(params[:page]).per(12)
+    end
   end
 
   def show

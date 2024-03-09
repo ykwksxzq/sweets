@@ -3,6 +3,9 @@ class Public::ReviewsController < ApplicationController
   def index
     @post = Post.find(params[:post_id])
     @reviews = @post.reviews
+    
+     # 点数が高い順に並び替えてレビューを取得
+    @reviews_high_rating = @post.reviews.order_by_rating
   end
 
   def create

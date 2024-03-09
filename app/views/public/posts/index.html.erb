@@ -5,10 +5,19 @@
      <%= render 'tag_list', tag_list: @tag_list %>
     </div>
 
-     <div class="col-md-10 p-2">
-    <div class="row justify-content-center">
+     <div class="col-md-10 p-3">
+     <div class="row justify-content-center">
+        
+   
     <h1 class="main-title mb-2">Sweets (<%= @posts.total_count %>)</h1>
     </div>
+     <p>Sort:
+        <%= link_to 'New', posts_path(latest: "true") %>
+        <%= link_to 'Old', posts_path(old: "true") %>
+        <%= link_to 'Star', posts_path(reviews_rating_count: "true") %>
+        <%= link_to 'Nice', posts_path(favorites_count: "true") %>
+      </p>
+     
 
    <%= render 'index', posts: @posts %>
 

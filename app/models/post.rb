@@ -25,8 +25,19 @@ class Post < ApplicationRecord
      image.variant(resize_to_limit: [width, height]).processed
   end
 
+  #ソート機能のためscopeヘルパーを使う
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+  scope :reviews_rating_count, -> { joins(:reviews).group(:id).order('AVG(reviews.rating) DESC') }
+  scope :favorites_count, -> { left_joins(:favorites).group(:id).order('COUNT(favorites.id) DESC') }
 
-
+# scope :latest, -> {order(created_at: :desc)}
+# order・・・データの取り出し
+# Latest・・・任意の名前で定義する
+# order(created_at: :desc)
+# created_at・・・投稿日のカラム
+# desc・・・昇順
+# asc・・・降順
 
   def save_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
