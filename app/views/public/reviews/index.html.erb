@@ -3,6 +3,7 @@
      <div class="row justify-content-center">
       <h1 class="main-title md-2">Reviews</h1>
     </div>
+    
      <div class="row justify-content-center">
       <div class="col-md-8 mb-2">
         <div class="card mb-6">
@@ -12,12 +13,11 @@
             </p>
           </header>
           <div class="card-content">
-
             <%= link_to post_path(@post.id) do %>
             <%= image_tag @post.get_image(400, 400), class:"card-img-top";%>
             <% end %>
-          <div class="card-body">
-           <div class="content">
+        <div class="card-body">
+         <div class="content">
             <div class="content average-score">
               <div class="star-rating mb-2">
                 <div class="star-rating-front" style="width: <%= @post.review_score_percentage %>%">★★★★★</div>
@@ -47,5 +47,7 @@
         </table>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 </section>

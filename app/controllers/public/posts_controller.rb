@@ -1,6 +1,4 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :is_matching_login_user, only:[:edit, :update, :destroy]
 
 
   def new
@@ -41,11 +39,10 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.find(params[:id])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @review = Review.new
-    @reviews = @post.reviews.page(params[:page]).per(3).order(created_at: :desc)
+    @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
     @comment = Comment.new
   end
 

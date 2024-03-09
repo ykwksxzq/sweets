@@ -1,5 +1,5 @@
  <div class="row justify-content-center m-3">
-    <% if model.errors.any? %>
+   <% if model.present? && model.errors.any? %>
      <div class="flash-message alert">
         <%= model.errors.count %>件のエラーが発生しました
       <ul>

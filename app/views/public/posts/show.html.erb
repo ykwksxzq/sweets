@@ -1,6 +1,7 @@
 <div class="container">
 
- <%= render 'layouts/error_messages', model: @review %>
+  <%= render 'layouts/error_messages', model: @review %>
+  <%= render 'layouts/error_messages', model: @comment %>
 
  <div class="row justify-content-center">
 
@@ -42,7 +43,7 @@
        <% end %>
 
       </h4>
-</div>
+     </div>
 
      <table class="table table-borderless">
       <tr>
@@ -82,9 +83,7 @@
         <%= render partial: 'public/reviews/form', review: @review, post: @post %>
        </div>
      </div>
-
-
-     <% if @reviews.present? %>
+　　　<% if @reviews.present? %>
         <div class="card mb-6">
           <header class="card-header">
             <h6 class="card-header-title">
@@ -126,10 +125,17 @@
        </div>
       <%= paginate @reviews %>
 
-        <% end %>
+　　　<% else %>
+  　　<tr>
+   　　 <td colspan="2">レビューはありません。</td>
+ 　　 </tr>
+　　<% end %>
+
+　　<%= render 'public/comments/index',  post: @post, comment: @comment %>
 
 
-      <%= render 'public/comments/index', posts: @posts %>
+
+
 
 
     </div>

@@ -1,5 +1,4 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_user!
 
   def create
     post = Post.find(params[:post_id])
@@ -7,10 +6,11 @@ class Public::CommentsController < ApplicationController
     comment.post_id = post.id
     if comment.save
       flash[:notice] = "コメントを送信しました"
-      redirect_to post_path(post.id)
+      redirect_to post_path(post)
     else
+      @post = Post.find(params[:post_id])
       flash[:alert] = "コメントを送信できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
-      redirect_to post_path(post.id)
+      redirect_to post_path(post)
     end
   end
 

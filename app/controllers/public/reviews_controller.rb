@@ -10,7 +10,7 @@ class Public::ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if @review.save
       flash[:notice] = "レビューを投稿しました"
-      redirect_to post_reviews_path
+      redirect_to post_reviews_path(@review.post)
     else
       @post = Post.find(params[:post_id])
       flash.now[:alert] = "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください。"

@@ -4,18 +4,20 @@
      <div class="comments card-text">
        <% if @post.comments.present? %>
          <% @post.comments.each do |comment| %>
-          <div class="media border mb-3 p-2">
+          <div class="media border mb-3 p-4">
            <%= link_to mypage_path(comment.user.id) do %>
-            <%= image_tag comment.user.get_profile_image(50,50), class:"card-img img-fluid mt-3 rounded-circle";%>
+            <%= image_tag comment.user.get_profile_image(70,70), class:"card-img img-fluid mt-3 rounded-circle";%>
             <%= comment.user.name %>
            <% end %>
 
-           <div class="media-body ml-4 p-3">
+           <div class="media-body ml-4 p-1">
             <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
-              <h5><%= h(comment.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %></h5>
+              <%= h(comment.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
 
               <% if comment.user.owns?(current_user) %>
+               <div class="row justify-content-center">
                  <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
+               </div>
               <% end %>
            </div>
           </div>
@@ -26,9 +28,9 @@
     </div>
    </div>
    </div>
-
+   <% if post.comments.present? && comment.present? %>
    <div class="new-comment card-text">
-     <%= form_with model: [@post, @comment] do |f| %>
+     <%= form_with model: [post, comment] do |f| %>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">To Comment</label>
           <%= f.text_area :content, rows: '3', class: "form-control", placeholder: "コメントをここに(100文字以内)" %>
@@ -36,5 +38,4 @@
        <%= f.submit "Post", class:"btn btn-info mt-2 float-right" %>
      <% end %>
    </div>
-  </div>
- </div>
+   <% end %>
