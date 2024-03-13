@@ -1,8 +1,8 @@
-   <h1 class="main-title mb-2">Janre
-   <% @genres.each do |genre| %>
-	 <button type="button" class="btn btn-outline-primary">
-    <%= link_to genres_path(genre_id: genre.id), method: :get do %>
-    <%= genre.name %>
-	 </button>
+  <h2 class="main-title mb-2">Janre</h2>
+    <% @genres.each do |genre| %>
+	    <button type="button" class="btn btn-outline-primary">
+        <%= link_to genres_path(genre_id: genre.id), method: :get do %>
+          <%= genre.name %>
+	      <% end %>
+	    </button>
 	  <% end %>
-	 <% end %>

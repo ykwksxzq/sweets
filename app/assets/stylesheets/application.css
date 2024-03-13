@@ -104,3 +104,7 @@ footer {
 .average-score-display {
   font-size: 16px;
 }
+
+.star-rating .far {
+  display: none;
+}

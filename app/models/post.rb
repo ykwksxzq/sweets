@@ -59,7 +59,6 @@ class Post < ApplicationRecord
     end
   end
 
-
   def avg_score
     unless self.reviews.empty?
       reviews.average(:rating).round(1).to_f
@@ -76,21 +75,14 @@ class Post < ApplicationRecord
     end
   end
 
-
-
-
-
-
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  
 
   def self.search_by(keyword)
     published.where('title LIKE ? or content LIKE ?', "%#{keyword}%", "%#{keyword}%")
-  end
-
-  def self.search(query)
-    where("title LIKE ? OR introduction LIKE ?", "%#{query}%", "%#{query}%")
   end
 
 end

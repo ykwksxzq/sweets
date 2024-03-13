@@ -105,19 +105,13 @@ class Public::PostsController < ApplicationController
     @posts = current_user.posts.where(status: :draft).page(params[:page]).per(12)
   end
 
-
-
-
-  def self.search(keyword)
-   if params[:title, :content].present?
-     @post = Post.self.search_by(keyword)
-     @keyword = params[:title, :content]
-   else
-     @posts = Post.all
-   end
+  def search
+     @posts = Post.where(status: :published).search(params[:keyword])
+       @posts = Post.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
+     @keyword = params[:keyword]  # 検索キーワードを@keywordに設定
+     @genres = Genre.all
+     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
   end
-
-
 
   private
 

@@ -1,7 +1,7 @@
    <h3 class="main-title mb-2">Tag</h3>
-	 <% tag_list.each do |list|%>
-	  <button type="button" class="btn btn-sm btn-primary m-1">
-	     <%=link_to list.name, search_tag_path(tag_id: list.id), class:"text-light", method: :get %>
+	   <% tag_list.each do |list|%>
+	     <button type="button" class="btn btn-sm btn-primary m-1">
+	       <%=link_to list.name, search_tag_path(tag_id: list.id), class:"text-light", method: :get %>
          <%="(#{list.posts.published.count})" %>
-      </button>
+       </button>
      <% end %>

@@ -16,6 +16,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 namespace :admin do
   get 'top' => 'homes#top', as: ''
   resources :genres, only: [:index, :create, :edit, :update, :destroy]
+  resources :users, only: [:index, :show, :edit, :update]
 end
 
 #ゲストログイン用
@@ -27,15 +28,11 @@ devise_scope :user do
 end
 
 
-
-
 scope module: :public do
   root to: 'homes#top'
 
   get 'posts/confirm' => 'posts#confirm', as: 'post_confirm'
   get 'search_tag'=>'posts#search_tag'
-  get '/search', to: 'posts#search', as: 'search'
-  post '/search',  to: 'posts#search'
   get 'users/mysweets' => 'users#mysweets', as: 'mysweets'
   get 'users/myreviews' => 'users#myreviews', as: 'myreviews'
   get 'users/myfavorites' => 'users#myfavorites', as: 'myfavorites'
@@ -48,6 +45,9 @@ scope module: :public do
    resource :favorite, only: [:create, :destroy]
    resources :comments, only: [:create, :destroy]
    resources :reviews, only: [:index, :create]
+    collection do
+    get 'search'
+    end
   end
 end
 

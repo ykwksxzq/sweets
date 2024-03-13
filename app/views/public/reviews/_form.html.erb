@@ -1,28 +1,31 @@
 
-
 <%= form_with model: @review, url: post_reviews_path(@post), method: :post do |f| %>
 
-<div class="rating-box">
-<div class="row">
-<div class="main-rating">
-  <div class="ratings mb-3">
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-    <span class="fa fa-star-o" id="star"></span>
-  </div>
-  </div>
+ <div class="rating-box">
+   <div class="row">
+    
+   <div class="main-rating">
+    <div class="ratings mb-3">
+     <span class="fa fa-star-o" id="star"></span>
+     <span class="fa fa-star-o" id="star"></span>
+     <span class="fa fa-star-o" id="star"></span>
+     <span class="fa fa-star-o" id="star"></span>
+     <span class="fa fa-star-o" id="star"></span>
+    </div>
+   </div>
+  
   <div class="ml-3 rating-value-display">
     <span id="rating-value-display">0</span>/5</div>
+  
   </div>
 </div>
-<%= f.hidden_field :post_id, value: @post.id %>
-<%= f.hidden_field :rating, id: "rating-value" %>
-<h6 class="text-dark p-2 mb-0">Content (200文字以内)</h6>
-<%= f.text_area :content,rows:'4', class: 'form-control', placeholder:"200文字以内で入力" %>
-<div class="actions p-3">
- <%= f.submit 'Review', class: "btn btn-success" %>
-</div>
+  
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.hidden_field :rating, id: "rating-value" %>
+    <h6 class="text-dark p-2 mb-0">Content (200文字以内)</h6>
+     <%= f.text_area :content,rows:'4', class: 'form-control', placeholder:"200文字以内で入力" %>
+  <div class="actions p-3">
+  <%= f.submit 'Review', class: "btn btn-success" %>
+  </div>
 
 <% end %>

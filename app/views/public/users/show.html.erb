@@ -3,73 +3,49 @@
     <h1 class="main-title md-2">My Page</h1>
   </div>
    <div class="row">
-       <div class="col-md-4 p-2">
-           <%= image_tag @user.get_profile_image(500, 500), class:"card-img-top img-fluid" %>
+     <div class="col-md-4 p-2">
+      <%= image_tag @user.get_profile_image(500, 500), class:"card-img-top img-fluid" %>
 
-           <table class="table table-borderless">
-            <tr>
-              <th>name: </th>
-              <td><%= @user.name %></td>
-            </tr>
-            <tr>
-              <td><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
-              </td>
-            </tr>
-           </table>
-
+        <table class="table table-borderless">
+         <tr>
+           <th>name: </th>
+           <td><%= @user.name %></td>
+         </tr>
+         <tr>
+           <td><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
+         </tr>
+        </table>
           <% if @user.matches_current_user?(current_user) %>
             <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-success' %>
           <% end %>
-       </div>
+      </div>
 
        <div class="col-md-8 p-2">
          <table class="table table-borderless">
            <tr>
-             <th>
-              <%= link_to "My Sweets", mysweets_path %> (全<%= @posts.total_count %>件)
-             </th>
-            </tr>
+             <th><%= link_to "My Sweets", mysweets_path %> (全<%= @posts.total_count %>件)</th>
+           </tr>
               <% @posts.each do |post| %>
                <td>
-                 <%= link_to post_path(post.id) do %>
-                 <%= image_tag post.get_image(200, 200) %>
-                 <% end %>
+                   <%= link_to post_path(post.id) do %>
+                     <%= image_tag post.get_image(200, 200) %>
+                   <% end %>
                </td>
                <% end %>
             <tr>
-               <th>
-                 <%= link_to "My Reviews", myreviews_path %> (全<%= @reviews.total_count %>件)
-               </th>
+               <th><%= link_to "My Reviews", myreviews_path %> (全<%= @reviews.total_count %>件)</th>
             </tr>
 
           <% if @user.owns?(current_user) %>
             <tr>
-              <th>
-                  <%= link_to "My Favorites", myfavorites_path %> (全<%= @favorites.total_count %>件)
-              </th>
+               <th><%= link_to "My Favorites", myfavorites_path %> (全<%= @favorites.total_count %>件)</th>
             </tr>
-
             <tr>
-             <th>
-               <%= link_to "My Drafts", post_confirm_path %>
-             </th>
+               <th><%= link_to "My Drafts", post_confirm_path %></th>
             </tr>
-
-            <tr>
-              <th>
-
-              </th>
-            </tr>
-
           <% end %>
 
          </table>
-
-        </div>
-
-
-
-
        </div>
-
-     </div>
+    </div>
+</div>

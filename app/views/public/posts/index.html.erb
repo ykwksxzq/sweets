@@ -7,8 +7,8 @@
 
      <div class="col-md-10 p-3">
      <div class="row justify-content-center">
-        
-   
+
+
     <h1 class="main-title mb-2">Sweets (<%= @posts.total_count %>)</h1>
     </div>
      <p>Sort:
@@ -17,7 +17,19 @@
         <%= link_to 'Star', posts_path(reviews_rating_count: "true") %>
         <%= link_to 'Nice', posts_path(favorites_count: "true") %>
       </p>
-     
+        <div class="form-group">
+           <form class="d-flex">
+               <%= form_with(url: search_posts_path , local: true, method: :get, class: "search-form") do |f| %>
+  <%= f.text_field :keyword, placeholder: "検索する", class: "search-input"%>
+  <%= f.submit "検索", class: "search-btn", id: "search-icon" %>
+  <% end %>
+
+             <%= form_tag(search_posts_path, method: :get) do %>
+               <%= text_field_tag :q, params[:q], placeholder: 'Search keyword' %>
+               <%= submit_tag '"Search"', class: 'btn btn-info m-1' %>
+             <% end %>
+           </form>
+
 
    <%= render 'index', posts: @posts %>
 
