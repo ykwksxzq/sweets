@@ -33,14 +33,7 @@
         <li class="nav-item">
            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link' %>
          </li>
-          <div class="form-group">
-           <form class="d-flex">
-             <%= form_tag(search_posts_path, method: :get) do %>
-               <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'Search keyword' %>
-               <%= submit_tag '"Search"', class: 'btn btn-info m-1' %>
-             <% end %>
-           </form>
-         </div>
+
 
          <% elsif admin_signed_in? %>
          <li class="nav-item">

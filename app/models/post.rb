@@ -60,16 +60,18 @@ class Post < ApplicationRecord
   end
 
   def avg_score
-    unless self.reviews.empty?
-      reviews.average(:rating).round(1).to_f
-    else
-      0.0
-    end
+   unless self.reviews.empty?
+     score = reviews.average(:rating).round(1).to_f
+     [score, 5.0].min  # 最大値を5に制限
+   else
+     0.0
+   end
   end
 
   def review_score_percentage
     unless self.reviews.empty?
-      reviews.average(:rating).round(1).to_f*100/5
+      score_percentage = avg_score * 100 / 5
+      [score_percentage, 100].min  # 最大値を100に制限
     else
       0.0
     end
@@ -79,10 +81,13 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
-  
-
-  def self.search_by(keyword)
-    published.where('title LIKE ? or content LIKE ?', "%#{keyword}%", "%#{keyword}%")
+  #あいまい検索
+  def self.search(query)
+    if query
+      joins(:tags).where("posts.title LIKE :query OR posts.content LIKE :query OR tags.name LIKE :query", query: "%#{query}%").distinct
+    else
+      all
+    end
   end
 
 end

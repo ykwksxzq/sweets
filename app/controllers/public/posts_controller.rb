@@ -49,6 +49,15 @@ class Public::PostsController < ApplicationController
     else
       Post.published.page(params[:page]).per(12)
     end
+
+    #検索機能のため
+    if params[:query].present?
+      @posts = Post.search(params[:query]).page(params[:page]).per(12).order(created_at: :desc)
+      flash[:notice] = "検索結果を表示しました。"
+    else
+      @posts = Post.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
+    end
+      render :index
   end
 
   def show
@@ -103,14 +112,6 @@ class Public::PostsController < ApplicationController
 
   def confirm
     @posts = current_user.posts.where(status: :draft).page(params[:page]).per(12)
-  end
-
-  def search
-     @posts = Post.where(status: :published).search(params[:keyword])
-       @posts = Post.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
-     @keyword = params[:keyword]  # 検索キーワードを@keywordに設定
-     @genres = Genre.all
-     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
   end
 
   private

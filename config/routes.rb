@@ -45,9 +45,6 @@ scope module: :public do
    resource :favorite, only: [:create, :destroy]
    resources :comments, only: [:create, :destroy]
    resources :reviews, only: [:index, :create]
-    collection do
-    get 'search'
-    end
   end
 end
 

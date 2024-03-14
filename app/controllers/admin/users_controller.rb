@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.where(status: :published).page(params[:page]).per(5)
+    @posts = Post.where(status: :published).where(user_id: params[:id]).page(params[:page]).per(5).order(created_at: :desc)
   end
 
 

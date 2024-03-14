@@ -4,7 +4,7 @@
   </div>
    <div class="row">
      <div class="col-md-4 p-2">
-      <%= image_tag @user.get_profile_image(500, 500), class:"card-img-top img-fluid" %>
+      <%= image_tag @user.get_profile_image(400, 400), class:"card-img-top img-fluid" %>
 
         <table class="table table-borderless">
          <tr>
@@ -23,7 +23,7 @@
        <div class="col-md-8 p-2">
          <table class="table table-borderless">
            <tr>
-             <th><%= link_to "My Sweets", mysweets_path %> (全<%= @posts.total_count %>件)</th>
+             <th><%= link_to "My Sweets", mysweets_path %> (<%= @posts.total_count %>)</th>
            </tr>
               <% @posts.each do |post| %>
                <td>
@@ -33,15 +33,15 @@
                </td>
                <% end %>
             <tr>
-               <th><%= link_to "My Reviews", myreviews_path %> (全<%= @reviews.total_count %>件)</th>
+               <th><%= link_to "My Reviews", myreviews_path %> (<%= @reviews.total_count %>)</th>
             </tr>
 
           <% if @user.owns?(current_user) %>
             <tr>
-               <th><%= link_to "My Favorites", myfavorites_path %> (全<%= @favorites.total_count %>件)</th>
+               <th><%= link_to "My Favorites", myfavorites_path %> (<%= @favorites.total_count %>)</th>
             </tr>
             <tr>
-               <th><%= link_to "My Drafts", post_confirm_path %></th>
+               <th><%= link_to "My Drafts", post_confirm_path %> (<%= @post_drafts.total_count %>)</th>
             </tr>
           <% end %>
 
