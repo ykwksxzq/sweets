@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h1 class="main-title md-2">My Page</h1>
+  </div>
+   <div class="row">
+     <div class="col-md-4 p-2">
+      <%= image_tag @user.get_profile_image(500, 500), class:"card-img-top img-fluid" %>
+
+        <table class="table table-borderless">
+         <tr>
+           <th>name: </th>
+           <td><%= @user.name %></td>
+         </tr>
+         <tr>
+           <td><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
+         </tr>
+        </table>
+            <%= link_to 'Edit', class: 'btn btn-success' %>
+      </div>
+
+       <div class="col-md-8 p-2">
+         <table class="table table-borderless">
+           <tr>
+             <th><%= link_to "Sweets" %> (全<%= @posts.total_count %>件)</th>
+           </tr>
+              <% @posts.each do |post| %>
+               <td>
+                   <%= link_to post_path(post.id) do %>
+                     <%= image_tag post.get_image(200, 200) %>
+                   <% end %>
+               </td>
+               <% end %>
+            <tr>
+               <th><%= link_to "Reviews" %></th>
+            </tr>
+            <tr>
+               <th><%= link_to "Favorites" %></th>
+            </tr>
+         </table>
+       </div>
+    </div>
+</div>

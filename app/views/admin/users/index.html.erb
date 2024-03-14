@@ -12,7 +12,6 @@
         <th>Name</th>
         <th>Posts</th>
         <th>Reviews</th>
-        <th>Favorites</th>
         <th>Comments</th>
       </tr>
     </thead>
@@ -20,10 +19,12 @@
       <% @users.each do |user| %>
       <td><%= user.id %></td>
       <td><%= image_tag user.get_profile_image(70,70), class:"card-img img-fluid"; %></td>
-      <td><%= user.name %></td>
+      <td>
+        <%= link_to admin_user_path(user.id) do %>
+        <%= user.name %></td>
+        <% end %>
       <td><%= user.posts.count %></td>
       <td><%= user.reviews.count %></td>
-      <td><%= user.favorites.count %></td>
       <td><%= user.comments.count %></td>
     </tbody>
     <% end %>

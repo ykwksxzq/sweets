@@ -5,6 +5,11 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    @user = User.find(params[:id])
+    @posts = Post.where(status: :published).page(params[:page]).per(5)
+  end
+
 
 
 
