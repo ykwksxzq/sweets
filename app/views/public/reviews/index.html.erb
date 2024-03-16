@@ -22,23 +22,7 @@
             <%= render 'star', post: @post %>
 
             </div>
-             <table class="table is-fullwidth has-text-centered">
-              <thead>
-               <tr>
-                 <th>Name</th><th>Star</th><th>Score</th><th>Content</th>
-               </tr>
-              </thead>
-              <tbody>
-                <% @reviews.each do |review| %>
-                 <tr>
-                   <td><%= review.user.name %></td>
-                   <td><%= render 'first_star', post: @post %></td>
-                   <td><%= review.score %></td>
-                   <td><%= review.content %></td>
-                 </tr>
-                <% end %>
-              </tbody>
-             </table>
+             <%= render 'public/reviews/table', reviews: @reviews %>
            </div>
          </div>
 
