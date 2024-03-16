@@ -56,7 +56,7 @@
        <th>score: </th>
        <td>
        <% if @post.rating.present? %>
-         <%= render 'public/rating_star', post: @post %>
+         <%= render 'rating_star', post: @post %>
        <% end %>
        </td>
       </tr>
