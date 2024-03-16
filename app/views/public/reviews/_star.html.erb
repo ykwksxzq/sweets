@@ -1,0 +1,25 @@
+<div class="content">
+  <div class="content average-score">
+    <div class="star-rating mb-2" id="star-rating">
+      <div class="star-rating-front">
+        <% (1..5).each do |i| %>
+          <% if post.review_score_percentage >= i * 20 %>
+            <i class="fas fa-star"></i>
+          <% elsif post.review_score_percentage >= (i - 0.5) * 20 %>
+            <i class="fas fa-star-half-alt"></i>
+          <% else %>
+            <i class="far fa-star"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="star-rating-back">
+        <% (1..5).each do |i| %>
+          <i class="far fa-star"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="average-score-display">
+      <%= post.avg_score %>（<span id="review-count"><%= post.reviews.count %></span>）
+    </div>
+  </div>
+</div>

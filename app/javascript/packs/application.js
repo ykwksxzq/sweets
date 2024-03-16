@@ -22,7 +22,7 @@ import 'bootstrap/dist/css/bootstrap';
 
 
 document.addEventListener('turbolinks:load', () => {
-  // class = "ratings"の子要素を取得
+// class = "ratings"の子要素を取得
 const stars = document.querySelector(".ratings").children;
 // const stars = document.getElementsByClassName("ratings").children;
 // id = "rating-value"の要素を取得
@@ -74,6 +74,22 @@ for(let i=0; i<stars.length; i++){
 			stars[j].classList.add("fa-star");
 		}
 	})
- }
+}
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  var ratingForm = document.querySelector('.starability-grow form');
+  var stars = ratingForm.querySelectorAll('input');
+
+  stars.forEach(function (star) {
+    star.addEventListener('change', function () {
+      // 選択された星の値（1から5の範囲）を取得
+      var selectedRating = this.value;
+      console.log("Selected rating: " + selectedRating);
+
+      // ここでAjaxなどを使用してサーバーに選択された評価を送信できる
+    });
+  });
+});
+
 

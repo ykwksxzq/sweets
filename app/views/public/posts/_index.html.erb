@@ -1,6 +1,6 @@
 
-    <div class="card-group py-5">
-     <% @posts.each do |post| %>
+<div class="card-group py-5">
+   <% @posts.each do |post| %>
 
      <div class="col-md-4 mb-2">
       <div class="card h-100 w-100 mx-auto">
@@ -18,20 +18,11 @@
           　<i class="fa-regular fa-heart"></i>
           <% end %>
 
-
-         <div class="content">
-                <div class="content average-score">
-                  <div class="star-rating mb-2">
-                   <div class="star-rating-front" style="width: <%= post.review_score_percentage %>%">★★★★★</div>
-                    <div class="star-rating-back">★★★★★</div>
-                  </div>
-                  <div class="average-score-display ml-3 pt-2">
-                   <%= post.avg_score %>（<%= post.reviews.count %>）
-                  </div>
-                </div>
-              </div>
-           </div>
-         </div>
-     </div>
-     <% end %>
-    </div>
+          <%= link_to post_reviews_path(post) do %>
+            <%= render 'public/reviews/star', post: post %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+ </div>

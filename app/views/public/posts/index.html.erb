@@ -5,33 +5,33 @@
      <%= render 'tag_list', tag_list: @tag_list %>
     </div>
 
-     <div class="col-md-10 p-3">
-     <div class="row justify-content-center">
+     <div class="col-md-10 p-2">
+      <div class="row justify-content-center">
 
-<% if @posts.present? %>
-    <h1 class="main-title mb-2">Sweets (<%= @posts.total_count %>)</h1>
-<% end %>
-    </div>
-     <p>Sort:
-        <%= link_to 'New', posts_path(latest: "true") %>
-        <%= link_to 'Old', posts_path(old: "true") %>
-        <%= link_to 'Star', posts_path(reviews_rating_count: "true") %>
-        <%= link_to 'Nice', posts_path(favorites_count: "true") %>
-      </p>
+       <% if @posts.present? %>
+         <h1 class="main-title mb-2">Sweets (<%= @posts.total_count %>)</h1>
+       <% end %>
+      </div>
+    <p>Sort:
+  <%= link_to 'Newest', posts_path(sort: 'latest') %>
+  <%= link_to 'Oldest', posts_path(sort: 'oldest') %>
+  <%= link_to 'Highest Rated', posts_path(sort: 'highest_rated') %>
+  <%= link_to 'Most Favorites', posts_path(sort: 'most_favorites') %>
+</p>
+
         <div class="form-group">
-           <form class="d-flex">
-<%= form_with(url: posts_path, method: "get") do %>
-  <%= text_field_tag :query, params[:query], placeholder: "Search..." %>
-  <%= submit_tag "Search" %>
-<% end %>
+          <form class="d-flex">
+            <%= form_with(url: posts_path, method: "get") do %>
+             <%= text_field_tag :query, params[:query], placeholder: "Search..." %>
+             <%= submit_tag "Search" %>
+            <% end %>
+          </form>
+        </div>
 
-           </form>
-           </div>
+     <%= render 'index', posts: @posts %>
 
+     <%= paginate @posts %>
 
-   <%= render 'index', posts: @posts %>
-
-   <%= paginate @posts %>
-
+    </div>
   </div>
 </div>

@@ -2,7 +2,6 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @post = Post.find(params[:post_id])
-    @reviews = @post.reviews
     @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
   end
 
@@ -22,6 +21,6 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :post_id, :rating, :content)
+    params.require(:review).permit(:user_id, :post_id, :score, :content)
   end
 end

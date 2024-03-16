@@ -5,7 +5,7 @@
 
     <div class="row justify-content-center">
 
-      <div class="col-mb-6 p-3">
+    <div class="col-mb-6 p-3">
 
     <div class="content">
      <%= image_tag @post.get_image(500,500), class: "img-fluid" %>
@@ -44,7 +44,6 @@
 
       </h4>
      </div>
-
      <table class="table table-borderless">
       <tr>
        <th>date:</th>
@@ -55,7 +54,11 @@
       </tr>
       <tr>
        <th>score: </th>
-       <td><%= @post.rating %></td>
+       <td>
+       <% if @post.rating.present? %>
+         <%= render 'rating_star', post: @post %>
+       <% end %>
+       </td>
       </tr>
 
       <tr>
@@ -85,7 +88,6 @@
        <h3 class="title">Write to Review</h3>
         <%= render partial: 'public/reviews/form', review: @review, post: @post %>
        </div>
-     </div>
 　　　<% if @reviews.present? %>
         <div class="card mb-6">
           <header class="card-header">
@@ -97,46 +99,38 @@
             </h6>
           </header>
           <div class="card-body">
-           <div class="content">
-            <div class="content average-score">
-              <div class="star-rating mb-2">
-                <div class="star-rating-front" style="width: <%= @post.review_score_percentage %>%">★★★★★</div>
-                <div class="star-rating-back">★★★★★</div>
-              </div>
-              <div class="average-score-display ml-3 pt-2">
-                score: <%= @post.avg_score %>
-              </div>
-            </div>
+            <%= render 'public/reviews/star', post: @post %>
           </div>
-        </div>
+
         <table class="table is-fullwidth has-text-centered">
           <thead>
             <tr>
-              <th>Name</th><th>Score</th><th>Content</th>
+              <th>Name</th><th>Star</th><th>Score</th><th>Content</th>
             </tr>
           </thead>
           <tbody>
             <% @reviews.each do |review| %>
               <tr>
                 <td><%= review.user.name %></td>
-                <td><%= review.rating %></td>
+                <td><%= render 'public/reviews/first_star', post: @post %></td>
+                <td><%= review.score %></td>
                 <td><%= review.content %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
-       </div>
-      <%= paginate @reviews %>
+        </div>
+
+        <%= paginate @reviews %>
 
       <% else %>
-      <tr>
-       <td colspan="2">レビューはありません。</td>
-      </tr>
+       <tr>
+         <td colspan="2">レビューはありません。</td>
+       </tr>
       <% end %>
 
       <%= render 'public/comments/index',  post: @post, comment: @comment %>
+     </div>
+    </div>
     </div>
 
-    </div>
-   </div>
-</div>

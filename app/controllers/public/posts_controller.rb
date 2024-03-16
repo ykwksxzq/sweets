@@ -37,19 +37,19 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
     @genres = Genre.all
 
-    #ソート機能のためのif文
-    @posts = if params[:latest]
-      Post.published.latest.page(params[:page]).per(12)
-    elsif params[:old].present?
-      Post.published.old.page(params[:page]).per(12)
-    elsif params[:rating_count].present?
-      Post.published.reviews_rating_count.page(params[:page]).per(12)
-    elsif params[:favorites_count].present?
-      Post.published.favorites_count.page(params[:page]).per(12)
-    else
-      Post.published.page(params[:page]).per(12)
-    end
-
+    #ソート機能のためのif文@posts = Post.where(status: :published).page(params[:page]).per(12)
+    @posts = case params[:sort]
+             when 'latest'
+               @posts.order(created_at: :desc)
+             when 'oldest'
+               @posts.order(created_at: :asc)
+             when 'highest_rated'
+               @posts.joins(:reviews).group(:id).order('AVG(reviews.score) DESC')
+             when 'most_favorites'
+               @posts.left_joins(:favorites).group(:id).order('COUNT(favorites.id) DESC')
+             else
+               @posts.order(created_at: :desc) # デフォルトのソート条件
+             end
     #検索機能のため
     if params[:query].present?
       @posts = Post.search(params[:query]).page(params[:page]).per(12).order(created_at: :desc)

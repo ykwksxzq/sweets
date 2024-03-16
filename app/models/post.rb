@@ -28,7 +28,7 @@ class Post < ApplicationRecord
   #ソート機能のためscopeヘルパーを使う
   scope :latest, -> { order(created_at: :desc) }
   scope :old, -> { order(created_at: :asc) }
-  scope :reviews_rating_count, -> { joins(:reviews).group(:id).order('AVG(reviews.rating) DESC') }
+  scope :reviews_rating_count, -> { joins(:reviews).group(:id).order('AVG(reviews.score) DESC') }
   scope :favorites_count, -> { left_joins(:favorites).group(:id).order('COUNT(favorites.id) DESC') }
 
 # scope :latest, -> {order(created_at: :desc)}
@@ -60,18 +60,16 @@ class Post < ApplicationRecord
   end
 
   def avg_score
-   unless self.reviews.empty?
-     score = reviews.average(:rating).round(1).to_f
-     [score, 5.0].min  # 最大値を5に制限
-   else
-     0.0
-   end
+    unless self.reviews.empty?
+      reviews.average(:score).round(1).to_f
+    else
+      0.0
+    end
   end
 
   def review_score_percentage
     unless self.reviews.empty?
-      score_percentage = avg_score * 100 / 5
-      [score_percentage, 100].min  # 最大値を100に制限
+      reviews.average(:score).round(1).to_f*100/5
     else
       0.0
     end
@@ -80,7 +78,7 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   #あいまい検索
   def self.search(query)
     if query
