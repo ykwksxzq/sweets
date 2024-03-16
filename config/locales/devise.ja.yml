@@ -9,7 +9,7 @@ ja:
         content: 内容
       review:
         user_id: ユーザー
-        rating: 評価
+        score: 評価
         content: 内容
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン

@@ -3,6 +3,7 @@ class Public::ReviewsController < ApplicationController
   def index
     @post = Post.find(params[:post_id])
     @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
+    @review = Review.new
   end
 
   def create

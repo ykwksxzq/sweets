@@ -18,7 +18,7 @@
 </div>
 <%= f.hidden_field :post_id, value: @post.id %>
 <%= f.hidden_field :score, id: "rating-value" %>
-<%= f.text_field :content, class: 'row form-control' %>
+<%= f.text_field :content, class: 'row form-control', placeholder:"100文字以内, 1つの投稿に対して1回レビューできます" %>
 <div class="actions m-3">
  <%= f.submit 'Review', class: "btn btn-success" %>
 </div>
