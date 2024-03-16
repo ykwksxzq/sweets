@@ -33,31 +33,32 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
+    @posts = Post.where(status: :published)
+
+    #検索用
+    if params[:query].present?
+      @posts = @posts.search(params[:query])
+      flash[:notice] = "検索結果を表示しました。"
+    end
+
+    #ソート機能用
+    @posts = case params[:sort]
+           when 'latest'
+             @posts.latest
+           when 'oldest'
+             @posts.oldest
+           when 'highest_rated'
+             @posts.reviews_rating_count
+           when 'most_favorites'
+             @posts.favorites_count
+           else
+             @posts.latest # デフォルトのソート条件
+           end.page(params[:page]).per(12)
+
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
     @genres = Genre.all
 
-    #ソート機能のためのif文@posts = Post.where(status: :published).page(params[:page]).per(12)
-    @posts = case params[:sort]
-             when 'latest'
-               @posts.order(created_at: :desc)
-             when 'oldest'
-               @posts.order(created_at: :asc)
-             when 'highest_rated'
-               @posts.joins(:reviews).group(:id).order('AVG(reviews.score) DESC')
-             when 'most_favorites'
-               @posts.left_joins(:favorites).group(:id).order('COUNT(favorites.id) DESC')
-             else
-               @posts.order(created_at: :desc) # デフォルトのソート条件
-             end
-    #検索機能のため
-    if params[:query].present?
-      @posts = Post.search(params[:query]).page(params[:page]).per(12).order(created_at: :desc)
-      flash[:notice] = "検索結果を表示しました。"
-    else
-      @posts = Post.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
-    end
-      render :index
+    render :index
   end
 
   def show

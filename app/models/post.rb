@@ -27,7 +27,7 @@ class Post < ApplicationRecord
 
   #ソート機能のためscopeヘルパーを使う
   scope :latest, -> { order(created_at: :desc) }
-  scope :old, -> { order(created_at: :asc) }
+  scope :oldest, -> { order(created_at: :asc) }
   scope :reviews_rating_count, -> { joins(:reviews).group(:id).order('AVG(reviews.score) DESC') }
   scope :favorites_count, -> { left_joins(:favorites).group(:id).order('COUNT(favorites.id) DESC') }
 
@@ -79,13 +79,23 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  #あいまい検索
+  # #あいまい検索
+  # def self.search(query)
+  #   if query
+  #     joins(:tags).where("posts.title LIKE :query OR posts.content LIKE :query OR tags.name LIKE :query", query: "%#{query}%").distinct
+  #   else
+  #     all
+  #   end
+  # end
+
   def self.search(query)
-    if query
-      joins(:tags).where("posts.title LIKE :query OR posts.content LIKE :query OR tags.name LIKE :query", query: "%#{query}%").distinct
+    if query.present?
+      where("title LIKE :query OR content LIKE :query", query: "%#{query}%")
     else
       all
     end
   end
+
+
 
 end

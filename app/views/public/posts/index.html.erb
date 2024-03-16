@@ -13,17 +13,17 @@
        <% end %>
       </div>
     <p>Sort:
-  <%= link_to 'Newest', posts_path(sort: 'latest') %>
-  <%= link_to 'Oldest', posts_path(sort: 'oldest') %>
-  <%= link_to 'Highest Rated', posts_path(sort: 'highest_rated') %>
-  <%= link_to 'Most Favorites', posts_path(sort: 'most_favorites') %>
+  <%= link_to 'New', posts_path(sort: 'latest') %>
+  <%= link_to 'Old', posts_path(sort: 'oldest') %>
+  <%= link_to 'Score', posts_path(sort: 'highest_rated') %>
+  <%= link_to 'Nice', posts_path(sort: 'most_favorites') %>
 </p>
 
         <div class="form-group">
           <form class="d-flex">
             <%= form_with(url: posts_path, method: "get") do %>
-             <%= text_field_tag :query, params[:query], placeholder: "Search..." %>
-             <%= submit_tag "Search" %>
+             <%= text_field_tag :query, params[:query], placeholder: "Search..."  %>
+             <%= submit_tag "Search", class: "btn btn-info p-1" %>
             <% end %>
           </form>
         </div>
