@@ -1,4 +1,9 @@
 <div class="container">
+  <% if post.favorites.count.positive? %>
+    <i class="fas fa-heart text-danger"> <%= post.favorites.count %></i>
+   <% else %>
+     <i class="fa-regular fa-heart"></i>
+   <% end %>
     <div class="row justify-content-center">
 
     <div class="col-mb-6 p-3">
@@ -29,9 +34,6 @@
       <tr>
        <th>score: </th>
        <td>
-       <% if @post.rating.present? %>
-         <%= render 'public/posts/rating_star', post: @post %>
-       <% end %>
        </td>
       </tr>
 
@@ -67,16 +69,16 @@
           <header class="card-header">
             <h6 class="card-header-title">
              Reviews:
-             <%= link_to (@post) do %>
+             <%= link_to admin_review_path(@post) do %>
                （<%= @post.reviews.count %> ）
              <% end %>
             </h6>
           </header>
           <div class="card-body">
-            <%= render 'public/reviews/star', post: @post %>
+            <%= render 'admin/reviews/star', post: @post %>
           </div>
 
-          <%= render 'public/reviews/table', reviews: @reviews %>
+          <%= render 'admin/reviews/table', reviews: @reviews %>
         </div>
 
         <%= paginate @reviews %>
@@ -103,7 +105,7 @@
                   <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
                     <%= h(comment.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
                    <div class="row justify-content-end">
-                     <%= link_to "削除", admin_post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
+                     <%= link_to "Delete", admin_post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
                    </div>
                 </div>
               </div>

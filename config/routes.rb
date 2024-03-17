@@ -18,9 +18,11 @@ namespace :admin do
   resources :genres, only: [:index, :create, :edit, :update, :destroy]
   resources :users, only: [:index, :show, :edit, :update]
   resources :posts, only: [:index, :show ] do
-    resources :comments, only: [:index, :destroy]
+    resources :comments, only: [:destroy]
+    resources :reviews, only: [:destroy]
   end
   resources :comments, only: [:index]
+  resources :reviews, only: [:index, :show]
 end
 
 #ゲストログイン用

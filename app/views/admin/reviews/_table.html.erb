@@ -1,0 +1,44 @@
+ <table class="table is-fullwidth has-text-centered">
+   <thead>
+     <tr>
+       <th>Name</th><th>Star</th><th>Score</th><th>Content</th>
+     </tr>
+   </thead>
+   <tbody>
+    <% reviews.each do |review| %>
+     <tr>
+       <td><%= review.user.name %></td>
+       <td>
+        <div class="content">
+         <div class="content average-score">
+          <div class="star-rating mb-2" id="star-rating">
+            <div class="star-rating-front">
+              <% if review.score.present? %>
+                <% (1..5).each do |i| %>
+                  <% if i <= review.score %>
+                    <i class="fas fa-star"></i>
+                  <% elsif i - 0.5 == review.score %>
+                    <i class="fas fa-star-half-alt"></i>
+                  <% else %>
+                    <i class="far fa-star"></i>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <div class="star-rating-back">
+                  <% (1..5).each do |i| %>
+                    <i class="far fa-star"></i>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+         </div>
+        </div>
+       </td>
+       <td><%= review.score %></td>
+       <td><%= review.content %></td>
+       <td><%= link_to "Delete", admin_post_review_path(review.post, review),class: 'btn btn-danger', method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %></td>
+     </tr>
+    <% end %>
+   </tbody>
+</table>
