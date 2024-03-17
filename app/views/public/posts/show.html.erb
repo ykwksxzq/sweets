@@ -71,14 +71,17 @@
        <td><%= @post.genre.name %></td>
       </tr>
       <tr>
-       <% if @post_tags.present? %>
        <th>tag: </th>
        <td>
-       <% @post_tags.each do |tag| %>
-       <%= link_to tag.name, search_tag_path(tag_id: tag.id) %><%="(#{tag.posts.count})" %>
+       <% if @post_tags.present? %>
+       <% @post_tags.published_posts_tags.each do |tag| %>
+       <button type="button" class="btn btn-sm btn-primary m-1">
+       <%= link_to tag.name, search_tag_path(tag_id: tag.id), class:"text-light" %>
+       <%="(#{tag.posts.where(status: 'published').count})" %>
        <% end %>
+       <% end %>
+        </button>
        </td>
-       <% end %>
       </tr>
       </table>
      </h5>

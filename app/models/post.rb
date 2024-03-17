@@ -39,6 +39,14 @@ class Post < ApplicationRecord
 # desc・・・昇順
 # asc・・・降順
 
+  #新規投稿時にタグも一緒に登録されるようにする
+  def save_tags(tag_list)
+    tag_list.each do |tag_name|
+      tag = Tag.find_or_create_by(name: tag_name.strip)
+      PostTag.find_or_create_by(post_id: self.id, tag_id: tag.id)
+    end
+  end
+
   def save_tag(sent_tags)
   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

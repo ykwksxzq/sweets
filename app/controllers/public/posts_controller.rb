@@ -13,6 +13,8 @@ class Public::PostsController < ApplicationController
     # 投稿ボタンを押下した場合
     if params[:post][:status] == "published"
        if @post.save(is_published: true)
+        # タグを保存
+        @post.save_tags(tag_list)
          flash[:notice] = "投稿を公開しました"
          redirect_to post_path(@post.id)
        else
@@ -23,6 +25,8 @@ class Public::PostsController < ApplicationController
         # 下書きボタンを押下した場合
     else
         if @post.save(is_draft: true)
+           # タグを保存
+           @post.save_tags(tag_list)
            flash[:notice] = "下書きに保存しました"
            redirect_to mypage_path(current_user)
         else

@@ -6,9 +6,6 @@ class Tag < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
 
-  # Ransack用の検索スコープを追加
-  scope :search, ->(query) {
-    ransack(name_cont: query).result(distinct: true)
-  }
+  scope :published_posts_tags, -> { joins(:posts).where(posts: { status: 'published' }).distinct }
 
 end
