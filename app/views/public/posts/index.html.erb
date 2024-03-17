@@ -12,12 +12,12 @@
          <h1 class="main-title mb-2">Sweets (<%= @posts.total_count %>)</h1>
        <% end %>
       </div>
-    <p>Sort:
-  <%= link_to 'New', posts_path(sort: 'latest') %>
-  <%= link_to 'Old', posts_path(sort: 'oldest') %>
-  <%= link_to 'Score', posts_path(sort: 'highest_rated') %>
-  <%= link_to 'Nice', posts_path(sort: 'most_favorites') %>
-</p>
+      <p>Sort:
+        <%= link_to 'New', posts_path(sort: 'latest'),class: 'btn btn-sm btn-outline-primary mr-2' %>
+        <%= link_to 'Old', posts_path(sort: 'oldest'),class: 'btn btn-sm btn-outline-primary mr-2'  %>
+        <%= link_to 'Score', posts_path(sort: 'highest_rated'),class: 'btn btn-sm btn-outline-primary mr-2'  %>
+        <%= link_to 'Nice', posts_path(sort: 'most_favorites') ,class: 'btn btn-sm btn-outline-primary mr-2' %>
+      </p>
 
         <div class="form-group">
           <form class="d-flex">

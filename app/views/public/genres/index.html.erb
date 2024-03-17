@@ -7,7 +7,9 @@
 
     <div class="col-md-10 p-3">
      <div class="row justify-content-center">
+       <% if @genre.present? %>
       <h1 class="main-title mb-2"><%= @genre.name %> Sweets (<%= @posts.total_count %>)</h1>
+       <% end %>
        </div>
 
        <%= render 'public/posts/index', posts: @posts %>

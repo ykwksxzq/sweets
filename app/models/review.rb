@@ -6,7 +6,9 @@ class Review < ApplicationRecord
   validates :score, presence: true
   validates :content, presence: true, length: { maximum: 100 }
 
-  scope :order_by_rating, -> { order(score: :desc) }
-
-
+ #ソート機能のためscopeヘルパーを使う
+  scope :latest, -> { order(created_at: :desc) }
+  scope :oldest, -> { order(created_at: :asc) }
+  scope :highest_score, -> { order(score: :desc) }
+  scope :lowest_score, -> { order(score: :asc) }
 end

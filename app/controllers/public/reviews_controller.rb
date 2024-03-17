@@ -2,8 +2,26 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @post = Post.find(params[:post_id])
-    @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
+    @reviews = @post.reviews.page(params[:page]).per(10).order(created_at: :desc)
     @review = Review.new
+
+    # ソート機能用のコピーを作成する
+    sorted_reviews = @post.reviews.page(params[:page]).per(10)
+
+    @reviews = case params[:sort]
+          when 'latest'
+             sorted_reviews.latest
+           when 'oldest'
+             sorted_reviews.oldest
+           when 'highest_score'
+             sorted_reviews.highest_score
+           when 'lowest_score'
+             sorted_reviews.lowest_score
+           else
+             sorted_reviews.latest # デフォルトのソート条件
+           end.per(10).order(created_at: :desc)
+
+    render :index
   end
 
   def create

@@ -28,7 +28,7 @@
 
 
    <div class="col-md-6 p-3">
-    <h5 class="row justify-content-center">
+    <h5 class="justify-content-center">
 
     <div class="col">
        <h4><% if @post.favorited_by?(current_user) %>
@@ -88,6 +88,11 @@
        <h3 class="title">Write to Review</h3>
         <%= render partial: 'public/reviews/form', review: @review, post: @post %>
        </div>
+       </div>
+       </div>
+
+       <div class="row justify-content-center">
+       <div class="col">
 
       <% if @reviews.present? %>
         <div class="card mb-6">

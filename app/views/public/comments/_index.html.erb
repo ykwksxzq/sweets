@@ -6,7 +6,7 @@
          <% @post.comments.each do |comment| %>
           <div class="media border mb-3 p-4">
            <%= link_to mypage_path(comment.user.id) do %>
-            <%= image_tag comment.user.get_profile_image(70,70), class:"card-img img-fluid mt-3 rounded-circle";%>
+            <%= image_tag comment.user.get_profile_image(50,50), class:"card-img img-fluid mt-3 rounded-circle";%>
             <%= comment.user.name %>
            <% end %>
 
@@ -15,7 +15,7 @@
               <%= h(comment.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
 
               <% if comment.user.owns?(current_user) %>
-               <div class="row justify-content-center">
+               <div class="row justify-content-end">
                  <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
                </div>
               <% end %>
