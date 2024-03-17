@@ -1,6 +1,7 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
 
- def index
+  def index
     @posts = Post.where(status: :published)
 
     #検索用
@@ -34,8 +35,5 @@ class Admin::PostsController < ApplicationController
    @post_tags = @post.tags
    @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
  end
-
-
-
 
 end
