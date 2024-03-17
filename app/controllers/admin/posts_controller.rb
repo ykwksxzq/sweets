@@ -31,6 +31,8 @@ class Admin::PostsController < ApplicationController
 
  def show
    @post = Post.find(params[:id])
+   @post_tags = @post.tags
+   @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
  end
 
 
