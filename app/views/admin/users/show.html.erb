@@ -23,13 +23,14 @@
            <tr>
              <th><%= link_to "Sweets" %> (全<%= @posts.total_count %>件)</th>
            </tr>
-              <% @posts.each do |post| %>
                <td>
-                   <%= link_to post_path(post.id) do %>
+                 <% @posts.each do |post| %>
+                    <%= link_to post_path(post.id) do %>
                      <%= image_tag post.get_image(200, 200) %>
-                   <% end %>
+                    <% end %>
+                 <% end %>
+                 <%= paginate @posts %>
                </td>
-               <% end %>
             <tr>
                <th><%= link_to "Reviews" %></th>
             </tr>

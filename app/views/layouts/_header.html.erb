@@ -39,9 +39,15 @@
          <li class="nav-item">
            <%= link_to "Users", admin_users_path, class: 'nav-link' %>
          </li>
-
-         投稿一覧
-         レビュー一覧
+          <li class="nav-item">
+           <%= link_to "Post", admin_posts_path, class: 'nav-link' %>
+         </li>
+         <li class="nav-item">
+           <%= link_to "Reviews", admin_posts_path, class: 'nav-link' %>
+         </li>
+          <li class="nav-item">
+           <%= link_to "Comments", admin_posts_path, class: 'nav-link' %>
+         </li>
          <li class="nav-item">
            <%= link_to "Genres", admin_genres_path, class: 'nav-link' %>
          </li>

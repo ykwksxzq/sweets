@@ -17,7 +17,7 @@ namespace :admin do
   get 'top' => 'homes#top', as: ''
   resources :genres, only: [:index, :create, :edit, :update, :destroy]
   resources :users, only: [:index, :show, :edit, :update]
-  resources :users, only: [:index, :show ]
+  resources :posts, only: [:index, :show ]
 end
 
 #ゲストログイン用
