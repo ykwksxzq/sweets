@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="row justify-content-center">
+
+    <div class="col-mb-6 p-3">
+
+    <div class="content">
+     <%= image_tag @post.get_image(500,500), class: "img-fluid" %>
+    </div>
+
+     <%= link_to admin_user_path(@post.user.id) do %>
+      <%= image_tag @post.user.get_profile_image(150,150), class: "img-fluid mt-3 rounded-circle" %>
+     <% end %>
+       name: <%= @post.user.name %>
+    </div>
+
+   <div class="col-md-6 p-3">
+    <h5 class="justify-content-center">
+
+    <div class="col">
+     </div>
+     <table class="table table-borderless">
+      <tr>
+       <th>date:</th>
+       <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+       <th>title:</th>
+       <td><%= @post.title %></td>
+      </tr>
+      <tr>
+       <th>score: </th>
+       <td>
+       <% if @post.rating.present? %>
+         <%= render 'rating_star', post: @post %>
+       <% end %>
+       </td>
+      </tr>
+
+      <tr>
+        <th>content:</th>
+        <td><%= h(@post.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+      </tr>
+
+      <tr>
+       <th>genre:</th>
+       <td><%= @post.genre.name %></td>
+      </tr>
+      <tr>
+       <th>tag: </th>
+       <td>
+       <% if @post_tags.present? %>
+       <% @post_tags.published_posts_tags.each do |tag| %>
+       <button type="button" class="btn btn-sm btn-primary m-1">
+       <%= link_to tag.name, search_tag_path(tag_id: tag.id), class:"text-light" %>
+       <%="(#{tag.posts.where(status: 'published').count})" %>
+       <% end %>
+       <% end %>
+        </button>
+       </td>
+      </tr>
+      </table>
+     </h5>
+       <div class="row justify-content-center">
+       <div class="col">
+
+      <% if @reviews.present? %>
+        <div class="card mb-6">
+          <header class="card-header">
+            <h6 class="card-header-title">
+             Reviews:
+             <%= link_to post_reviews_path(@post) do %>
+               （<%= @post.reviews.count %> ）
+             <% end %>
+            </h6>
+          </header>
+          <div class="card-body">
+            <%= render 'public/reviews/star', post: @post %>
+          </div>
+
+          <%= render 'public/reviews/table', reviews: @reviews %>
+        </div>
+
+        <%= paginate @reviews %>
+
+      <% else %>
+       <tr>
+         <td colspan="2">レビューはありません。</td>
+       </tr>
+      <% end %>
+      
+      <div class="card mx-auto m-3">
+   <div class="card-body">
+    Comments:
+     <div class="comments card-text">
+       <% if @post.comments.present? %>
+         <% @post.comments.each do |comment| %>
+          <div class="media border mb-3 p-4">
+           <%= link_to admin_user_path(comment.user.id) do %>
+            <%= image_tag comment.user.get_profile_image(50,50), class:"card-img img-fluid mt-3 rounded-circle";%>
+            <%= comment.user.name %>
+           <% end %>
+
+           <div class="media-body ml-4 p-1">
+            <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+              <%= h(comment.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+
+               <div class="row justify-content-end">
+                 <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
+               </div>
+           </div>
+          </div>
+         <% end %>
+       <% else %>
+         投稿されているコメントはありません
+       <% end %>
+    </div>
+   </div>
+   </div>
+   
+     </div>
+    </div>
+    </div>
+

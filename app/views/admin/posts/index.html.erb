@@ -28,6 +28,34 @@
           </form>
         </div>
 
+        <div class="card-group py-5">
+          <% @posts.each do |post| %>
+
+            <div class="col-md-4 mb-2">
+              <div class="card h-100 w-100 mx-auto">
+
+               <%= link_to admin_post_path(post.id) do %>
+                 <%= image_tag post.get_image(300,300), class:"card-img-top img-fluid " %>
+               <% end %>
+
+               <div class="card-body">
+
+               <% if post.favorites.count.positive? %>
+                 <i class="fas fa-heart text-danger"> <%= post.favorites.count %></i>
+               <% else %>
+               　<i class="fa-regular fa-heart"></i>
+               <% end %>
+
+               <%= link_to post_reviews_path(post) do %>
+                <%= render 'public/reviews/star', post: post %>
+              <% end %>
+              </div>
+             </div>
+           </div>
+         <% end %>
+       </div>
+
+
      <%= render 'public/posts/index', posts: @posts %>
 
      <%= paginate @posts %>
