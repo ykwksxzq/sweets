@@ -7,12 +7,25 @@
 
     <div class="col-md-10 p-3">
      <div class="row justify-content-center">
-       <% if @genre.present? %>
-      <h1 class="main-title mb-2"><%= @genre.name %> Sweets (<%= @posts.total_count %>)</h1>
-       <% end %>
-       </div>
+
+      <% if @genre.present? %>
+        <h1 class="main-title mb-2"><%= @genre.name %> Sweets (<%= @posts.total_count %>)</h1>
+      <% end %>
+
+      </div>
+
+    <% if @posts.present? %>
 
        <%= render 'public/posts/index', posts: @posts %>
+
+
+    <% else %>
+
+       <% @comment = 'No postings' %>
+       <%= render 'layouts/space' %>
+
+    <% end %>
+
 
        <%= paginate @posts %>
    </div>
