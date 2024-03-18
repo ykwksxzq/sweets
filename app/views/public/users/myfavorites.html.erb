@@ -3,8 +3,10 @@
 
    <h1 class="main-title mb-2">My Favorite (<%= @favorites.total_count %>)</h1>
    </div>
-   <div class="col m-3">
 
+   <% if @favorites.present? %>
+
+   <div class="col m-3">
     <div class="card-group py-5">
      <% @favorites.each do |favorite| %>
 
@@ -33,6 +35,13 @@
      </div>
      <% end %>
     </div>
+
+    <% else %>
+
+       <% @comment = 'No my favorites' %>
+       <%= render 'layouts/space' %>
+
+    <% end %>
 
    <%= paginate @favorites %>
 

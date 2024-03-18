@@ -4,7 +4,17 @@
   </div>
   <div class="col m-3">
     
-   <%= render 'index', posts: @posts %>
+   <% if @posts.present? %>
+  
+     <%= render 'index', posts: @posts %>
+   
+   <% else %>
+   
+     <% @comment = 'No postings' %>
+     <%= render 'layouts/space' %>
+   
+   <% end %>
+
 
    <%= paginate @posts %>
 

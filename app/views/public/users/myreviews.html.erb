@@ -4,6 +4,8 @@
    <h1 class="main-title mb-2">My Reviews(<%= @reviews.total_count %>)</h1>
   </div>
 
+  <% if @reviews.present? %>
+
     <div class="card-group py-5">
      <% @reviews.each do |review| %>
      <div class="col-md-4 mb-2">
@@ -51,6 +53,16 @@
       </div>
       <% end %>
      </div>
+
+      <% else %>
+
+       <% @comment = 'No my reviews' %>
+       <%= render 'layouts/space' %>
+
+      <% end %>
+
+
+
      <%= paginate @reviews %>
    </div>
 

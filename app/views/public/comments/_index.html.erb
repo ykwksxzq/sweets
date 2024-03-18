@@ -15,8 +15,8 @@
               <%= h(comment.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
 
               <% if comment.user.owns?(current_user) %>
-               <div class="row justify-content-end">
-                 <%= link_to "Delete", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
+               <div class="row justify-content-center">
+                 <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
                </div>
               <% end %>
            </div>

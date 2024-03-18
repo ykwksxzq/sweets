@@ -92,7 +92,9 @@
         <%= render partial: 'public/reviews/form', review: @review, post: @post %>
        </div>
        </div>
-       </div>
+      </div>
+      </div>
+
 
        <div class="row justify-content-center">
        <div class="col">
@@ -117,9 +119,8 @@
         <%= paginate @reviews %>
 
       <% else %>
-       <tr>
-         <td colspan="2">レビューはありません。</td>
-       </tr>
+         <h5>Reviews:</h5>
+         <p>投稿されているレビューはありません</p>
       <% end %>
 
       <%= render 'public/comments/index',  post: @post, comment: @comment %>

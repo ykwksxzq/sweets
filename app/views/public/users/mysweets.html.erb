@@ -3,8 +3,19 @@
 
    <h1 class="main-title mb-2">My Sweets (<%= @posts.total_count %>)</h1>
    </div>
+
+   <% if @posts.present? %>
+
    <div class="col m-3">
+
    <%= render 'public/posts/index', posts: @posts %>
+
+   <% else %>
+
+       <% @comment = 'No my postings' %>
+       <%= render 'layouts/space' %>
+
+    <% end %>
 
    <%= paginate @posts %>
 
