@@ -50,7 +50,7 @@ scope module: :public do
   resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
    resource :favorite, only: [:create, :destroy]
    resources :comments, only: [:create, :destroy]
-   resources :reviews, only: [:index, :create]
+   resources :reviews, only: [:index, :create, :destroy]
   end
 end
 

@@ -43,8 +43,9 @@
             <tr>
               <th>Content: </th>
               <td><%= review.content %></td>
-             </tr>
+            </tr>
           </table>
+          <%= link_to "Delete", post_review_path(review.post, review),class: 'btn-sm btn-danger', method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
          </div>
         </div>
       </div>
