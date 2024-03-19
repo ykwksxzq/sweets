@@ -2,6 +2,10 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit, :destroy]
 
+  def index
+    @user = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @posts = Post.published.where(user_id: params[:id]).page(params[:page]).per(4).order(created_at: :desc)

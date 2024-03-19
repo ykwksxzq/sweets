@@ -73,6 +73,7 @@ class Public::PostsController < ApplicationController
     @review = Review.new
     @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
     @comment = Comment.new
+    @user = @post.user
   end
 
   def edit

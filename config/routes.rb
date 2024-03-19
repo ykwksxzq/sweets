@@ -46,7 +46,11 @@ scope module: :public do
   get 'users/mypage/:id' => 'users#show', as: 'mypage'
 
   resources :genres, only:[:index]
-  resources :users, only: [:create, :edit, :update, :destroy]
+  resources :users, only: [:create, :edit, :update, :destroy] do
+    resource :relationships, only: [:create, :destroy]
+     get "followings" => "relationships#followings", as: "followings"
+     get "followers" => "relationships#followers", as: "followers"
+  end
   resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
    resource :favorite, only: [:create, :destroy]
    resources :comments, only: [:create, :destroy]
