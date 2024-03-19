@@ -1,11 +1,13 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit, :destroy]
 
   def show
     @user = User.find(params[:id])
     @posts = Post.published.where(user_id: params[:id]).page(params[:page]).per(4).order(created_at: :desc)
     @reviews = current_user.reviews.page(params[:page]).per(12)
     @favorites = current_user.favorites.page(params[:page]).per(12).order(created_at: :desc)
-    @post_drafts = Post.draft.where(user_id: params[:id]).page(params[:page]).per(3).order(created_at: :desc)
+    @post_drafts = Post.draft.where(user_id: params[:id]).page(params[:page]).per(12).order(created_at: :desc)
   end
 
   def edit
@@ -31,15 +33,15 @@ class Public::UsersController < ApplicationController
   end
 
   def mysweets
-    @posts = current_user.posts.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
+    @posts = current_user.posts.where(status: :published).page(params[:page]).per(9).order(created_at: :desc)
   end
 
   def myreviews
-    @reviews = current_user.reviews.page(params[:page]).per(12).order(created_at: :desc)
+    @reviews = current_user.reviews.page(params[:page]).per(9).order(created_at: :desc)
   end
 
   def myfavorites
-    @favorites = current_user.favorites.page(params[:page]).per(12).order(created_at: :desc)
+    @favorites = current_user.favorites.page(params[:page]).per(9).order(created_at: :desc)
   end
 
 
@@ -47,6 +49,13 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction, :email, :profile_image)
+  end
+
+  def ensure_guest_user
+    if current_user.guest_user?
+      flash[:alert] =  "ゲストユーザーはプロフィール編集できません"
+      redirect_to mypage_path(current_user.id)
+    end
   end
 
 end

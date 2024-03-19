@@ -3,20 +3,21 @@
    <h1 class="main-title mb-2">Drafts (<%= @posts.total_count %>)</h1>
   </div>
   <div class="col m-3">
-    
+
    <% if @posts.present? %>
-  
+
      <%= render 'index', posts: @posts %>
-   
+
    <% else %>
-   
+
      <% @comment = 'No postings' %>
      <%= render 'layouts/space' %>
-   
+
    <% end %>
 
-
-   <%= paginate @posts %>
+    <div class="pagination justify-content-center">
+     <%= paginate @posts, theme: 'bootstrap-5' %>
+    </div>
 
   </div>
  </div>

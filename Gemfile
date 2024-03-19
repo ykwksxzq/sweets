@@ -59,5 +59,4 @@ gem 'devise'
 gem 'kaminari'
 gem 'image_processing', '~> 1.2'
 gem 'rails-i18n'
-
-gem 'ransack'
+gem 'bootstrap5-kaminari-views', '~> 0.0.1'

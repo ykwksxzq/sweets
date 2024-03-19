@@ -9,21 +9,22 @@
        <div class="row justify-content-center">
          <h1 class="main-title mb-2"><%= @tag.name %> (<%= @posts.total_count %>)</h1>
        </div>
-       
+
        <% if @posts.present? %>
 
          <%= render 'index', posts: @posts %>
-         
+
        <% else %>
-       
-         
+
+
          <% @comment = 'No postings' %>
          <%= render 'layouts/space' %>
 
        <% end %>
-    
 
-         <%= paginate @posts %>
+        <div class="pagination justify-content-center">
+          <%= paginate @posts, theme: 'bootstrap-5' %>
+        </div>
       </div>
     </div>
 </div>

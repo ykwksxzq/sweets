@@ -2,14 +2,14 @@ class Public::GenresController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.published.where(genre: @genre).page(params[:page]).per(12).order(created_at: :desc)
+    @posts = Post.published.where(genre: @genre).page(params[:page]).per(9).order(updated_at: :desc)
     @genres = Genre.all
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
 
      if params[:genre_id].present?
        @genre = Genre.find(params[:genre_id])
        @posts = @genre.posts
-       @posts = @posts.published.page(params[:page]).per(12).order(created_at: :desc)
+       @posts = @posts.published.page(params[:page]).per(9).order(updated_at: :desc)
      end
   end
 

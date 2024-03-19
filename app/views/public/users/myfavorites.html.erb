@@ -43,7 +43,9 @@
 
     <% end %>
 
-   <%= paginate @favorites %>
+     <div class="pagination justify-content-center">
+     <%= paginate @favorites, theme: 'bootstrap-5' %>
+    </div>
 
   </div>
 </div>

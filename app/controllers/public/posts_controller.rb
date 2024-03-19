@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+ before_action :authenticate_user!
+ before_action :is_matching_login_user, only:[:edit, :update, :destroy]
 
 
   def new
@@ -37,7 +39,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.where(status: :published)
+    @posts = Post.where(status: :published).order(updated_at: :desc)
 
     #検索用
     if params[:query].present?
@@ -57,7 +59,7 @@ class Public::PostsController < ApplicationController
              @posts.favorites_count
            else
              @posts.latest # デフォルトのソート条件
-           end.page(params[:page]).per(12)
+           end.page(params[:page]).per(9)
 
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
     @genres = Genre.all
@@ -112,11 +114,11 @@ class Public::PostsController < ApplicationController
     @tag_list = Tag.joins(:posts).where(posts: { status: 'published' }).uniq
     @tag = Tag.find(params[:tag_id])
     @genres = Genre.all
-    @posts = @tag.posts.where(status: :published).page(params[:page]).per(12).order(created_at: :desc)
+    @posts = @tag.posts.where(status: :published).page(params[:page]).per(9).order(updated_at: :desc)
   end
 
   def confirm
-    @posts = current_user.posts.where(status: :draft).page(params[:page]).per(12)
+    @posts = current_user.posts.where(status: :draft).page(params[:page]).per(9).order(updated_at: :desc)
   end
 
   private
@@ -126,9 +128,10 @@ class Public::PostsController < ApplicationController
   end
 
   def is_matching_login_user
-   @post = Post.find(params[:id])
-   unless @post.user.id == current_user.id
-    redirect_to posts_path
-   end
+    @post = Post.find(params[:id])
+    unless @post.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
+
 end

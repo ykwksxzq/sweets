@@ -25,8 +25,10 @@
        <%= render 'layouts/space' %>
 
     <% end %>
-    
-       <%= paginate @posts %>
+
+     <div class="pagination justify-content-center">
+       <%= paginate @posts, theme: 'bootstrap-5' %>
+     </div>
    </div>
   </div>
 </div>
