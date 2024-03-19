@@ -46,7 +46,7 @@ scope module: :public do
   get 'users/mypage/:id' => 'users#show', as: 'mypage'
 
   resources :genres, only:[:index]
-  resources :users, only: [:index, :create, :edit, :update, :destroy]
+  resources :users, only: [:create, :edit, :update, :destroy]
   resources :posts, only: [:new, :index, :show, :create, :edit, :update, :destroy] do
    resource :favorite, only: [:create, :destroy]
    resources :comments, only: [:create, :destroy]
