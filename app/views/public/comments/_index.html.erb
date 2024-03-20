@@ -1,4 +1,4 @@
-  <div class="card mx-auto m-3">
+  <div class="card m-3">
    <div class="card-body">
     Comments:
      <div class="comments card-text">
@@ -7,15 +7,17 @@
           <div class="media border mb-2 p-2">
            <%= link_to mypage_path(comment.user.id) do %>
             <%= image_tag comment.user.get_profile_image(100,100), class:"card-img img-fluid mt-2 rounded-circle";%>
-            <%= comment.user.name %>
            <% end %>
 
            <div class="media-body ml-2 p-1">
-            <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
+              <%= link_to mypage_path(comment.user.id) do %>
+               <%= comment.user.name %>
+              <% end %>
+              <p><%= comment.created_at.strftime('%Y/%m/%d') %></p>
               <%= h(comment.content).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
 
               <% if comment.user.owns?(current_user) %>
-               <div class="row justify-content-end p-2">
+               <div class="col justify-content-end p-2">
                  <%= link_to "Delete", post_comment_path(comment.post, comment), class: "btn btn-danger btn-sm float-right", method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
                </div>
               <% end %>
