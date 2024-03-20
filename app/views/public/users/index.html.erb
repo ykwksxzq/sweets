@@ -4,7 +4,14 @@
 
      <div class="col-md-12 p-2">
 
+       <% if @users.exists? %>
+
        <%= render "public/users/index", users: @users %>
+
+       <% else %>
+        <% @comment = 'No users' %>
+        <%= render 'layouts/space' %>
+       <% end %>
 
        <div class="pagination justify-content-end">
         <%= paginate @users, theme: 'bootstrap-5' %>
