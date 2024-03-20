@@ -15,7 +15,6 @@
  */
 
 
-
 .main-title  {
   font-family: cursive;
 }
@@ -29,7 +28,7 @@ sub-title {
   width: 700px;
   justify-content: center;
   display: table;
-  background-image: url("../imeges/24840791.jpg");
+  background-image: url("24840791.jpg");
   background-color: rgba(255,255,255,0.2);
   background-blend-mode: lighten;
   background-size: 100% 100%;
