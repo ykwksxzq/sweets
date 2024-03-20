@@ -8,10 +8,7 @@
        <%= link_to post_path(post.id) do %>
         <%= image_tag post.get_image(300,300), class:"card-img-top img-fluid " %>
        <% end %>
-
-
         <div class="card-body">
-
          <% if post.favorites.count.positive? %>
           <i class="fas fa-heart text-danger"> <%= post.favorites.count %></i>
           <% else %>
