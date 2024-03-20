@@ -103,5 +103,5 @@ class Post < ApplicationRecord
       all
     end
   end
-
+  
 end

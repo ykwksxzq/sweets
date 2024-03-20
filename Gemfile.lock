@@ -262,7 +262,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bootsnap (>= 1.4.4)
+  bootsnap
   bootstrap5-kaminari-views (~> 0.0.1)
   byebug
   capybara (>= 3.26)

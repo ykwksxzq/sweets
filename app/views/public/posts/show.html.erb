@@ -25,9 +25,9 @@
 
      <% end %>
 
-    　<% if different_user?(@user) %>
+     <% if @user.present? %>
    　　　　<%= render "public/relationships/btn", user: @user, options: { class: ""} %>
-      <% end %>
+     <% end %>
     </div>
 
 
