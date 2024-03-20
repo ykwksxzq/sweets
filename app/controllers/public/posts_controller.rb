@@ -47,6 +47,12 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "検索結果を表示しました。"
     end
 
+    # タグとの結合を行う
+    if params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      @posts = @tag.posts.where(status: 'published').order(updated_at: :desc)
+    end
+
     #ソート機能用
     @posts = case params[:sort]
            when 'latest'
