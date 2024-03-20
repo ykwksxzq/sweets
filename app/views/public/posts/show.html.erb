@@ -20,15 +20,14 @@
 
       <div class="btn group">
        <%= link_to "Edit", edit_post_path(@post), class: "btn btn-sm btn-success" %>
-       <%= link_to "delete", post_path(@post.id),class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
+       <%= link_to "delete", post_path(@post.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
       </div>
 
      <% end %>
 
-
-  　　　　<% if current_user != @user %>
+    　<% if different_user?(@user) %>
    　　　　<%= render "public/relationships/btn", user: @user, options: { class: ""} %>
-       <% end %>
+      <% end %>
     </div>
 
 

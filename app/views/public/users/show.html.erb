@@ -14,26 +14,25 @@
          <tr>
            <td><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
          </tr>
-        </table>
           <% if @user.matches_current_user?(current_user) %>
             <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-success' %>
           <% end %>
 
-          <tr>
-    <th>follows</th>
-    <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
-  </tr>
-  <tr>
-    <th>followers</th>
-    <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
-  </tr>
-</table>
+        <tr>
+          <th>follows</th>
+          <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+        </tr>
+       <tr>
+          <th>followers</th>
+          <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+       </tr>
 
-<div class="row">
-  <% if current_user != @user %>
-    <td><%= render "public/relationships/btn", user: @user, options: { class: ""} %></td>
-  <% end %>
-</div>
+       <div class="row">
+          <% if different_user?(@user) %>
+          <td><%= render "public/relationships/btn", user: @user, options: { class: ""} %></td>
+          <% end %>
+       </div>
+       </table>
 
 
 

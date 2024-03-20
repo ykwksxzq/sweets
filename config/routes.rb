@@ -27,7 +27,7 @@ end
 
 #ゲストログイン用
 
-get 'users' => redirect('/users/sign_up')
+# get 'users' => redirect('/users/sign_up')
 
 devise_scope :user do
   post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
@@ -46,7 +46,7 @@ scope module: :public do
   get 'users/mypage/:id' => 'users#show', as: 'mypage'
 
   resources :genres, only:[:index]
-  resources :users, only: [:create, :edit, :update, :destroy] do
+  resources :users, only: [:index, :create, :edit, :update, :destroy] do
     resource :relationships, only: [:create, :destroy]
      get "followings" => "relationships#followings", as: "followings"
      get "followers" => "relationships#followers", as: "followers"

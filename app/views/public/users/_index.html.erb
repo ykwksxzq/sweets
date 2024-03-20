@@ -1,0 +1,21 @@
+   <table class="table">
+   <thead>
+     <tr>
+       <th>image</th>
+       <th>name</th>
+       <th colspan="4"></th>
+     </tr>
+   </thead>
+   <tbody>
+     <% users.each do |user| %>
+       <tr>
+         <td><%= image_tag user.get_profile_image(100, 100) %></td>
+         <td><%= user.name %></td>
+         <td>followings: <%= user.followings.count %></td>
+         <td>followers: <%= user.followers.count %></td>
+         <td><%= render "public/relationships/btn", user: user, options: { class: "" } %></td>
+         <td><%= link_to "Show", mypage_path(user.id) ,class: "btn btn-sm btn-primary" %></td>
+       </tr>
+     <% end %>
+   </tbody>
+ </table>
