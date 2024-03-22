@@ -28,12 +28,12 @@ class Admin::PostsController < ApplicationController
     @genres = Genre.all
 
     render :index
- end
+  end
 
- def show
-   @post = Post.find(params[:id])
-   @post_tags = @post.tags
-   @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
- end
+  def show
+    @post = Post.find(params[:id])
+    @post_tags = @post.tags
+    @reviews = @post.reviews.page(params[:page]).per(5).order(created_at: :desc)
+  end
 
 end
