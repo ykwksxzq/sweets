@@ -56,7 +56,10 @@
 
           <% if @user.owns?(current_user) %>
             <tr>
+              <% if @reviews.present? %>
+
                <th><%= link_to "My Favorites", myfavorites_path %> (<%= @favorites.total_count %>)</th>
+              <% end %>
             </tr>
             <tr>
                <th><%= link_to "My Drafts", post_confirm_path %> (<%= @post_drafts.total_count %>)</th>

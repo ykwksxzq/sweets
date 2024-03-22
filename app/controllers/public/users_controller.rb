@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = Post.published.where(user_id: params[:id]).page(params[:page]).per(4).order(created_at: :desc)
-    @reviews = current_user.reviews.page(params[:page]).per(12)
+    @reviews = current_user.reviews.page(params[:page]).per(12).order(created_at: :desc)
     @favorites = current_user.favorites.page(params[:page]).per(12).order(created_at: :desc)
     @post_drafts = Post.draft.where(user_id: params[:id]).page(params[:page]).per(12).order(created_at: :desc)
   end
