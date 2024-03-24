@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-    <% if @genres, @tag_list.present? %>
+
      <%= render 'public/genres/genres', genres: @genres %>
      <%= render 'public/posts/tag_list', tag_list: @tag_list %>
-    <% end %>
+
     </div>
 
      <div class="col-md-10 p-2">
