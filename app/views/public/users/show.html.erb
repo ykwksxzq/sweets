@@ -4,39 +4,35 @@
   </div>
    <div class="row">
      <div class="col-md-4 p-2">
-      <%= image_tag @user.get_profile_image(400, 400), class:"card-img-top img-fluid" %>
+       <%= image_tag @user.get_profile_image(400, 400), class:"card-img-top img-fluid" %>
 
         <table class="table table-borderless">
-         <tr>
-           <th>name: </th>
-           <td><%= @user.name %></td>
-         </tr>
-         <tr>
-           <td><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
-         </tr>
-          <% if @user.matches_current_user?(current_user) %>
-            <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-success' %>
-          <% end %>
+          <tr>
+            <th>name: </th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
+          </tr>
+            <% if @user.matches_current_user?(current_user) %>
+              <%= link_to 'Edit', edit_user_path(current_user.id), class: 'btn btn-success' %>
+            <% end %>
 
-        <tr>
-          <th>follows</th>
-          <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
-        </tr>
-       <tr>
-          <th>followers</th>
-          <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
-       </tr>
-
-       <div class="row">
-          <% if different_user?(@user) %>
-          <td><%= render "public/relationships/btn", user: @user, options: { class: ""} %></td>
-          <% end %>
-       </div>
-       </table>
-
-
-
-      </div>
+          <tr>
+            <th>follows</th>
+            <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+          </tr>
+          <tr>
+            <th>followers</th>
+            <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+          </tr>
+          <div class="row">
+            <% if different_user?(@user) %>
+             <td><%= render "public/relationships/btn", user: @user, options: { class: ""} %></td>
+            <% end %>
+          </div>
+        </table>
+     </div>
 
        <div class="col-md-8 p-2">
          <table class="table table-borderless">
