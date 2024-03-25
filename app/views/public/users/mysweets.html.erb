@@ -4,22 +4,20 @@
    <h1 class="main-title mb-2">My Sweets (<%= @posts.total_count %>)</h1>
    </div>
 
-   <% if @posts.present? %>
+       <% if @posts.present? %>
 
-   <div class="col m-3">
+     <div class="col m-3">
+       <%= render 'public/posts/index', posts: @posts %>
 
-   <%= render 'public/posts/index', posts: @posts %>
-
-   <% else %>
+      <% else %>
 
        <% @comment = 'No my postings' %>
        <%= render 'layouts/space' %>
+      <% end %>
 
-    <% end %>
+      <div class="pagination justify-content-center">
+        <%= paginate @posts, theme: 'bootstrap-5' %>
+      </div>
 
-    <div class="pagination justify-content-center">
-     <%= paginate @posts, theme: 'bootstrap-5' %>
-    </div>
-
-  </div>
+     </div>
 </div>
