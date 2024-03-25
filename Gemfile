@@ -64,6 +64,8 @@ gem 'image_processing', '~> 1.2'
 gem 'rails-i18n'
 gem 'bootstrap5-kaminari-views', '~> 0.0.1'
 
+gem 'sassc-rails'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
