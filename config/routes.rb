@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 # URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
   registrations: 'public/registrations',
-  sessions: 'public/sessions'
+  sessions: 'public/sessions',
+  passwords: 'public/passwords'
 }
 
 # 管理者用
@@ -14,7 +15,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 namespace :admin do
-  get 'top' => 'homes#top', as: ''
+  get 'top' => 'homes#top', as: 'top'
   resources :genres, only: [:index, :create, :edit, :update, :destroy]
   resources :users, only: [:index, :show, :edit, :update]
   resources :posts, only: [:index, :show ] do
