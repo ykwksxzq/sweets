@@ -1,11 +1,9 @@
 <div class="container">
-
+<div class="row justify-content-center">
   <%= render 'layouts/error_messages', model: @review %>
   <%= render 'layouts/error_messages', model: @comment %>
 
-    <div class="row justify-content-center">
-
-    <div class="col-mb-6 p-3">
+    <div class="col-md-6">
 
     <div class="content">
      <%= image_tag @post.get_image(500,500), class: "img-fluid" %>
@@ -31,7 +29,7 @@
     </div>
 
 
-   <div class="col-md-6 p-3">
+   <div class="col-md-6">
     <h5 class="justify-content-center">
 
     <div class="col">
@@ -101,7 +99,7 @@
 
 
        <div class="row justify-content-center">
-       <div class="col">
+       <div class="col m-3">
 
       <% if @reviews.present? %>
         <div class="card mb-6">

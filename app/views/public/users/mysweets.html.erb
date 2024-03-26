@@ -2,11 +2,11 @@
   <div class="row justify-content-center">
 
    <h1 class="main-title mb-2">My Sweets (<%= @posts.total_count %>)</h1>
-   </div>
 
        <% if @posts.present? %>
 
      <div class="col m-3">
+       
        <%= render 'public/posts/index', posts: @posts %>
 
       <% else %>
@@ -20,4 +20,5 @@
       </div>
 
      </div>
+    </div>
 </div>
