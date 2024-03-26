@@ -1,12 +1,14 @@
 <div class="container">
-<div class="row justify-content-center">
+
   <%= render 'layouts/error_messages', model: @review %>
   <%= render 'layouts/error_messages', model: @comment %>
+
+    <div class="row justify-content-center m-3">
 
     <div class="col-md-6">
 
     <div class="content">
-     <%= image_tag @post.get_image(500,500), class: "img-fluid" %>
+     <%= image_tag @post.get_image(800,800), class: "img-fluid" %>
     </div>
 
      <%= link_to mypage_path(@post.user.id) do %>
@@ -98,8 +100,8 @@
       </div>
 
 
-       <div class="row justify-content-center">
-       <div class="col m-3">
+       <div class="row justify-content-center m-3">
+       <div class="col">
 
       <% if @reviews.present? %>
         <div class="card mb-6">
