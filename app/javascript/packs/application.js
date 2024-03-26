@@ -18,8 +18,6 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap/dist/scss/bootstrap';
-
 
 document.addEventListener('turbolinks:load', () => {
 // class = "ratings"の子要素を取得
