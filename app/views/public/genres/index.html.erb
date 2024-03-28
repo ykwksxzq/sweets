@@ -14,21 +14,21 @@
 
       </div>
 
-    <% if @posts.present? %>
+      <% if @posts.present? %>
 
-       <%= render 'public/posts/index', posts: @posts %>
+        <%= render 'public/posts/index', posts: @posts %>
 
 
-    <% else %>
+      <% else %>
 
-       <% @comment = 'No postings' %>
-       <%= render 'layouts/space' %>
+        <% @comment = 'No postings' %>
+        <%= render 'layouts/space' %>
 
-    <% end %>
+      <% end %>
 
-     <div class="pagination justify-content-center">
+      <div class="pagination justify-content-center">
        <%= paginate @posts, theme: 'bootstrap-5' %>
-     </div>
+      </div>
    </div>
   </div>
 </div>
